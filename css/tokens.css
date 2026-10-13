@@ -1,0 +1,39 @@
+/* Design tokens — from Figma variables (Patomy/Website/Desktop). */
+:root {
+  /* Colors */
+  --color-white: #ffffff;
+  --color-beige: #f2f2f2;
+  --color-gray: #d6d3cf;
+  --color-light-blue: #a9d3fd;
+  --color-medium-blue: #678bc2;
+  --color-intense-blue: #3589de;
+  --color-dark-blue: #171b24;
+  --color-medium-brown: #905d2f;
+  --color-border-action: #141414;
+
+  --color-bg: var(--color-beige);
+  --color-text: var(--color-dark-blue);
+  --color-accent: var(--color-intense-blue);
+
+  /* Typography (serif display headings, sans body — set exact fonts later) */
+  --font-sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: Optima, Candara, "Segoe UI", sans-serif;
+  --fs-base: 1rem;
+
+  /* Spacing */
+  --space-s: 8px;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2.5rem;
+  --space-6: 4rem;
+
+  /* Layout (Figma desktop frame is 1440 wide, 60px side margins) */
+  --container-max: 1320px;
+  --gutter: 60px;
+
+  /* Radii */
+  --radius-xs: 4px;
+  --radius-full: 1440px;
+}

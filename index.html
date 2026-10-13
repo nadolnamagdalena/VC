@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Patomy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <!-- Sections follow the Figma frame order (Patomy/Website/Desktop, 61:13770) -->
+
+  <nav class="nav" data-component="nav" aria-label="Main">
+    <a class="nav__logo" href="#hero" aria-label="Patomy home">
+      <img src="assets/icons/logo-mark.svg" width="21.092" height="18" alt="">
+      <img src="assets/icons/logo-wordmark.svg" width="58.01" height="10.821" alt="">
+    </a>
+    <ul class="nav__links">
+      <li><a href="#shared-case">Platform</a></li>
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#eligibility">Use cases</a></li>
+      <li><a href="#use-cases">For your team</a></li>
+      <li><a href="#security">Security</a></li>
+    </ul>
+    <div class="nav__actions">
+      <a class="btn btn--ghost" href="#">Sign in</a>
+      <a class="btn btn--dark" href="#cta">Request a demo</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="hero" data-component="hero">
+    <img class="hero__arcs hero__arcs--left" src="assets/images/hero-arcs-left.svg" width="646" height="912" alt="">
+    <img class="hero__arcs hero__arcs--right" src="assets/images/hero-arcs-right.svg" width="646" height="912" alt="">
+
+    <div class="hero__content">
+      <p class="eyebrow">Built for FOR REGIONAL, PUBLIC AND MANDATE-BOUND FUNDS</p>
+      <h1 class="hero__title">Every pitch deck checked against your mandate.<br> Every decision remembered.</h1>
+      <p class="hero__lead">Patomy tests startup applications against your fund's formal rules, shows the evidence behind every finding, and remembers why your team decided.</p>
+      <div class="hero__ctas">
+        <a class="btn btn--primary" href="#cta">Request a demo <img src="assets/icons/arrow-right-white.svg" width="24" height="24" alt=""></a>
+        <a class="btn btn--outline" href="#cta">Run a past dossier <img src="assets/icons/arrow-right-dark.svg" width="24" height="24" alt=""></a>
+      </div>
+      <p class="hero__note">Run one of your past dossiers through Patomy and compare it with your own assessment.</p>
+    </div>
+
+    <div class="container">
+      <img class="hero__image" src="assets/images/hero.png" alt="Two colleagues working on a laptop at a shared desk">
+
+      <ul class="key-points">
+        <li class="key-points__item">
+          <h2 class="key-points__title">Eligibility you can prove</h2>
+          <p>Red, Orange or Green per rule, each finding linked to its source.</p>
+        </li>
+        <li class="key-points__item">
+          <h2 class="key-points__title">One case, intake to IC</h2>
+          <p>Criteria, gaps, DD questions and evidence stay connected.</p>
+        </li>
+        <li class="key-points__item">
+          <h2 class="key-points__title">Decisions you can defend</h2>
+          <p>What was known, who decided, and why. Traceable for audit.</p>
+        </li>
+      </ul>
+    </div>
+
+    <button class="ask-tomy" type="button">
+      <span class="ask-tomy__avatar"><img src="assets/icons/tomy-avatar-mark.svg" width="16.405" height="14" alt=""></span>
+      Ask Tomy
+    </button>
+  </header>
+
+  <main>
+    <section class="section" id="problem"><!-- 61:13772 "Today, an investment case is rebuilt at every handover" + process chips --></section>
+    <section class="section section--dark" id="shared-case"><!-- 61:13813 "One shared case, from application to committee" --></section>
+    <section class="section feature" id="eligibility"><!-- 61:13901 01 Mandate intelligence --></section>
+    <section class="section feature feature--reverse" id="continuity"><!-- 61:13959 02 Case continuity --></section>
+    <section class="section feature" id="memory"><!-- 61:14018 03 Institutional memory --></section>
+    <section class="section feature feature--reverse" id="stack"><!-- 61:14076 04 Built into your stack --></section>
+    <section class="section section--dark" id="how-it-works"><!-- 61:14135 4-step flow: Intake / Check / Clarify / Decide --></section>
+    <section class="section" id="use-cases"><!-- 61:14228 three audience cards --></section>
+    <section class="section" id="security"><!-- 61:14253 Security & control: certifications + 3 points --></section>
+    <section class="section" id="photo-banner"><!-- 61:14511 full-width image --></section>
+    <section class="section section--dark" id="cta"><!-- 61:14525 "See your own criteria run on a real dossier." --></section>
+  </main>
+
+  <footer class="site-footer" data-component="footer"><!-- Large PATOMY wordmark --></footer>
+</body>
+</html>
