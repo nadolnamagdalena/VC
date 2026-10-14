@@ -4,6 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Patomy</title>
+  <script>
+    // Show the loading intro (unless the visitor prefers reduced motion). Set before first paint.
+    document.documentElement.classList.add('js');
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('intro-on', 'intro-hold');
+  </script>
+  <script>
+    // Apply saved/system color mode before first paint to avoid a flash
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme = t;
+    } catch (e) { document.documentElement.dataset.theme = 'light'; }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap">
@@ -12,9 +25,64 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/intro.css">
   <script type="module" src="js/main.js"></script>
 </head>
 <body>
+  <!-- Loading intro (4 stages, see js/components/intro.js) -->
+  <div class="intro" aria-hidden="true">
+    <div class="intro__flood"></div>
+    <div class="intro__arcs intro__arcs--left"><i></i><i></i></div>
+    <div class="intro__arcs intro__arcs--right"><i></i><i></i></div>
+    <div class="intro__stage intro__stage--tagline">
+      <p class="intro__tagline">
+        <span class="intro__line"><span>The eligibility and decision layer</span></span>
+        <span class="intro__line"><span>for mandate-bound capital.</span></span>
+      </p>
+    </div>
+
+    <div class="intro__stage">
+      <div class="intro__fit">
+        <svg class="intro__scene" width="550.2" height="112" viewBox="0 0 550.2 112" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <clipPath id="intro-win-a"><rect x="-40" y="16" width="630" height="98"/></clipPath>
+            <clipPath id="intro-win-mark"><rect x="-40" y="0" width="630" height="112"/></clipPath>
+          </defs>
+          <g clip-path="url(#intro-win-mark)" class="intro__sigclip">
+            <g class="intro__sigin">
+              <g class="intro__sig">
+                <rect class="intro__box" x="0" y="45.5" width="131.241" height="66.5" fill="#8CACD3"/>
+                <path class="intro__p1" d="M131.241 94.0513C97.537 94.0513 70.2149 66.5685 70.2149 32.6667V1.49369e-05H79.3337V5.7436V32.6667C79.3337 61.5027 102.573 84.8789 131.241 84.8789V94.0513Z" fill="#F2F2F2"/>
+                <path class="intro__p2" d="M0.0878553 112C43.8539 112 79.3333 76.5207 79.3333 32.7546V32.6667V22.9744V6.47147e-05H70.1964V22.9744V32.6667C70.1964 71.4351 38.7684 102.863 0 102.863V112H0.0878553Z" fill="#905D2F"/>
+                <path class="intro__arc intro__p3" d="M0 94.0513C33.7035 94.0513 61.0256 66.5685 61.0256 32.6667V6.47147e-05H51.9069V5.74365V32.6667C51.9069 61.5027 28.6674 84.8789 0 84.8789V94.0513Z" fill="#8CACD3"/>
+                <path class="intro__p4" d="M131.153 112C87.3866 112 51.9072 76.5206 51.9072 32.7545V32.6667V22.9744V1.49369e-05H61.0442V22.9744V32.6667C61.0442 71.4351 92.4722 102.863 131.241 102.863V112H131.153Z" fill="#F2F2F2"/>
+              </g>
+            </g>
+          </g>
+          <g class="intro__lw" clip-path="url(#intro-win-a)" data-letter="p">
+            <g class="intro__lp" transform="translate(164.32 19.21)" data-v2="164.32 19.21" data-v3="38.6 45.24"><path class="intro__lt" d="M0 65.6429V0H23.7252C36.9476 0 45.0123 10.034 45.0123 20.7244C45.0123 31.6024 37.3227 41.8239 23.7252 41.8239H8.15848V65.6429H0ZM22.7875 34.3219C31.6024 34.3219 36.5725 28.3202 36.5725 20.7244C36.5725 13.5037 31.3211 7.40827 22.7875 7.40827H8.15848V34.3219H22.7875Z" fill="#F2F2F2"/></g>
+          </g>
+          <g class="intro__lw" clip-path="url(#intro-win-a)" data-letter="a">
+            <g class="intro__lp" transform="translate(212.19 19.21)" data-v2="212.19 19.21" data-v3="81.13 45.24"><path class="intro__lt" d="M0 65.6429L23.819 0H34.0405L58.0471 65.6429H49.4197L42.9492 47.3567H14.9103L8.4398 65.6429H0ZM17.6298 39.7609H40.2297L28.8829 7.87715L17.6298 39.7609Z" fill="#F2F2F2"/></g>
+          </g>
+          <g class="intro__lw" clip-path="url(#intro-win-a)" data-letter="t">
+            <g class="intro__lp" transform="translate(272.62 19.21)" data-v2="272.62 19.21"><path class="intro__lt" d="M20.8182 65.6429V7.50205H0V0H49.8886V7.50205H29.0704V65.6429H20.8182Z" fill="#F2F2F2"/></g>
+          </g>
+          <g class="intro__lw" clip-path="url(#intro-win-a)" data-letter="o">
+            <g class="intro__lp" transform="translate(333.11 18.36)" data-v2="333.11 18.36" data-v3="306.25 45.24"><path class="intro__lt" d="M32.6339 67.3309C13.3161 67.3309 0 52.4206 0 33.6654C0 14.8166 13.3161 0 32.6339 0C51.9517 0 65.2678 14.8166 65.2678 33.6654C65.2678 52.4206 51.9517 67.3309 32.6339 67.3309ZM32.6339 59.6413C47.5442 59.6413 56.828 47.4505 56.828 33.6654C56.828 19.8804 47.5442 7.6896 32.6339 7.6896C17.6298 7.6896 8.43981 19.8804 8.43981 33.6654C8.43981 47.4505 17.6298 59.6413 32.6339 59.6413Z" fill="#F2F2F2"/></g>
+          </g>
+          <g class="intro__lw" clip-path="url(#intro-win-a)" data-letter="m">
+            <g class="intro__lp" transform="translate(416.02 19.21)" data-v2="416.02 19.21" data-v3="383.53 46.08"><path class="intro__lt" d="M0 65.6429V0H10.9718L31.9775 54.2023L52.9832 0H63.6737V65.6429H55.7027V14.2539L35.6347 65.6429H27.9451L7.97093 14.2539V65.6429H0Z" fill="#F2F2F2"/></g>
+          </g>
+          <g class="intro__lw" clip-path="url(#intro-win-a)" data-letter="y">
+            <g class="intro__lp" transform="translate(495.97 19.21)" data-v2="495.97 19.21" data-v3="457.86 46.08"><path class="intro__lt" d="M22.975 65.6429V38.2605L0 0H9.56512L27.1012 30.1958L44.8247 0H54.2023L31.2273 38.2605V65.6429H22.975Z" fill="#F2F2F2"/></g>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
   <!-- Sections follow the Figma frame order (Patomy/Website/Desktop, 61:13770) -->
 
   <nav class="nav" data-component="nav" aria-label="Main">
@@ -35,23 +103,33 @@
     </div>
   </nav>
 
+  <div class="stage">
+  <!-- Background lines: pinned to the viewport while scrolling through the hero, they dock at the top of the
+       next section and change colour there (css/sections.css, js/components/background-arcs.js) -->
+  <div class="bg-arcs" data-component="background-arcs" aria-hidden="true">
+    <div class="bg-arcs__stick">
+      <span class="hero__arcs hero__arcs--left"></span>
+      <span class="hero__arcs hero__arcs--right"></span>
+      <img class="bg-arcs__color bg-arcs__color--left" src="assets/images/arcs-left-color.svg" width="646" height="912" alt="">
+      <img class="bg-arcs__color bg-arcs__color--right" src="assets/images/arcs-right-color.svg" width="646" height="912" alt="">
+    </div>
+  </div>
+
   <header class="hero" id="hero" data-component="hero">
-    <img class="hero__arcs hero__arcs--left" src="assets/images/hero-arcs-left.svg" width="646" height="912" alt="">
-    <img class="hero__arcs hero__arcs--right" src="assets/images/hero-arcs-right.svg" width="646" height="912" alt="">
 
     <div class="hero__content">
-      <p class="eyebrow">Built for FOR REGIONAL, PUBLIC AND MANDATE-BOUND FUNDS</p>
-      <h1 class="hero__title">Every pitch deck checked against your mandate.<br> Every decision remembered.</h1>
-      <p class="hero__lead">Patomy tests startup applications against your fund's formal rules, shows the evidence behind every finding, and remembers why your team decided.</p>
+      <p class="eyebrow line"><span>Built for FOR REGIONAL, PUBLIC AND MANDATE-BOUND FUNDS</span></p>
+      <h1 class="hero__title"><span class="line"><span>Every pitch deck checked</span></span> <span class="line"><span>against your mandate.</span></span> <span class="line"><span>Every decision remembered.</span></span></h1>
+      <p class="hero__lead line"><span>Patomy tests startup applications against your fund's formal rules, shows the evidence behind every finding, and remembers why your team decided.</span></p>
       <div class="hero__ctas">
         <a class="btn btn--primary" href="#cta">Request a demo <img src="assets/icons/arrow-right-white.svg" width="24" height="24" alt=""></a>
-        <a class="btn btn--outline" href="#cta">Run a past dossier <img src="assets/icons/arrow-right-dark.svg" width="24" height="24" alt=""></a>
+        <a class="btn btn--outline" href="#cta">Run a past dossier <span class="btn__arrow" aria-hidden="true"></span></a>
       </div>
-      <p class="hero__note">Run one of your past dossiers through Patomy and compare it with your own assessment.</p>
+      <p class="hero__note line"><span>Run one of your past dossiers through Patomy and compare it with your own assessment.</span></p>
     </div>
 
     <div class="container">
-      <img class="hero__image" src="assets/images/hero.png" alt="Two colleagues working on a laptop at a shared desk">
+      <video class="hero__image" src="assets/video/hero.mp4" preload="auto" muted loop playsinline aria-hidden="true"></video>
 
       <ul class="key-points">
         <li class="key-points__item">
@@ -69,26 +147,331 @@
       </ul>
     </div>
 
+    <div class="theme-toggle" data-component="theme-toggle" role="group" aria-label="Color mode">
+      <button class="theme-toggle__btn" type="button" data-theme-value="light" aria-label="Light mode" aria-pressed="true"><span class="theme-toggle__icon theme-toggle__icon--sun"></span></button>
+      <button class="theme-toggle__btn" type="button" data-theme-value="dark" aria-label="Dark mode" aria-pressed="false"><span class="theme-toggle__icon theme-toggle__icon--moon"></span></button>
+    </div>
+
     <button class="ask-tomy" type="button">
       <span class="ask-tomy__avatar"><img src="assets/icons/tomy-avatar-mark.svg" width="16.405" height="14" alt=""></span>
       Ask Tomy
     </button>
   </header>
 
+  <section class="problem" id="problem" data-reveal aria-labelledby="problem-title">
+    <div class="problem__header">
+      <p class="eyebrow line" style="--d: 0"><span>Why we created Patomy</span></p>
+      <h2 class="problem__title" id="problem-title">
+        <span class="line" style="--d: 120"><span>Today, an investment case is</span></span>
+        <span class="line" style="--d: 230"><span>rebuilt at every handover.</span></span>
+      </h2>
+      <p class="problem__lead line" style="--d: 420"><span>Facts are re-read, questions re-asked and evidence re-collected as a case moves from intake to committee. By the time it is decided, nobody can easily show what was known, what was missing, or why.</span></p>
+    </div>
+
+    <ol class="flow" aria-label="How a case moves">
+      <li class="flow__step" style="--d: 700"><span class="flow__pill">Application</span><span class="flow__link" aria-hidden="true"><img src="assets/icons/flow-dot.svg" width="8" height="8" alt=""><img src="assets/icons/flow-arrow.svg" width="56" height="24" alt=""></span></li>
+      <li class="flow__step" style="--d: 900"><span class="flow__pill">Advisor</span><span class="flow__link" aria-hidden="true"><img src="assets/icons/flow-dot.svg" width="8" height="8" alt=""><img src="assets/icons/flow-arrow.svg" width="56" height="24" alt=""></span></li>
+      <li class="flow__step" style="--d: 1100"><span class="flow__pill">Investment manager</span><span class="flow__link" aria-hidden="true"><img src="assets/icons/flow-dot.svg" width="8" height="8" alt=""><img src="assets/icons/flow-arrow.svg" width="56" height="24" alt=""></span></li>
+      <li class="flow__step" style="--d: 1300"><span class="flow__pill">Due diligence</span><span class="flow__link" aria-hidden="true"><img src="assets/icons/flow-dot.svg" width="8" height="8" alt=""><img src="assets/icons/flow-arrow.svg" width="56" height="24" alt=""></span></li>
+      <li class="flow__step" style="--d: 1500"><span class="flow__pill">Investment committee</span></li>
+    </ol>
+  </section>
+  </div>
+
   <main>
-    <section class="section" id="problem"><!-- 61:13772 "Today, an investment case is rebuilt at every handover" + process chips --></section>
-    <section class="section section--dark" id="shared-case"><!-- 61:13813 "One shared case, from application to committee" --></section>
-    <section class="section feature" id="eligibility"><!-- 61:13901 01 Mandate intelligence --></section>
-    <section class="section feature feature--reverse" id="continuity"><!-- 61:13959 02 Case continuity --></section>
-    <section class="section feature" id="memory"><!-- 61:14018 03 Institutional memory --></section>
-    <section class="section feature feature--reverse" id="stack"><!-- 61:14076 04 Built into your stack --></section>
-    <section class="section section--dark" id="how-it-works"><!-- 61:14135 4-step flow: Intake / Check / Clarify / Decide --></section>
-    <section class="section" id="use-cases"><!-- 61:14228 three audience cards --></section>
-    <section class="section" id="security"><!-- 61:14253 Security & control: certifications + 3 points --></section>
-    <section class="section" id="photo-banner"><!-- 61:14511 full-width image --></section>
-    <section class="section section--dark" id="cta"><!-- 61:14525 "See your own criteria run on a real dossier." --></section>
+    <section class="case" id="shared-case" data-nav-theme="dark" aria-labelledby="case-title">
+      <div class="case__top" data-reveal>
+        <div class="case__intro">
+          <p class="eyebrow line" style="--d: 0"><span>Why we created Patomy</span></p>
+          <h2 class="case__title" id="case-title">
+            <span class="line" style="--d: 120"><span>One shared case,</span></span>
+            <span class="line" style="--d: 230"><span>from application</span></span>
+            <span class="line" style="--d: 340"><span>to committee.</span></span>
+          </h2>
+          <p class="case__lead line" style="--d: 520"><span>Patomy is the eligibility and decision layer for mandate-bound funds. It turns every application into one case: checked against your fund's formal rules, with each finding linked to its source, each gap turned into a question, and each decision recorded. Everyone who picks up the case starts where the last person left off.</span></p>
+        </div>
+
+        <div class="case__mark"><img src="assets/images/mark-large.svg" width="210.922" height="180" alt=""></div>
+
+        <ul class="case__cards">
+          <li class="case__card" style="--d: 450">
+            <h3 class="line"><span>Not another CRM</span></h3>
+            <p class="line"><span>Your CRM keeps the relationships. Patomy adds the evidence and the decision.</span></p>
+          </li>
+          <li class="case__card" style="--d: 620">
+            <h3 class="line"><span>Not a deck scorer</span></h3>
+            <p class="line"><span>AI reads and points to evidence. Your fund’s rules decide.</span></p>
+          </li>
+          <li class="case__card" style="--d: 790">
+            <h3 class="line"><span>Not on autopilot</span></h3>
+            <p class="line"><span>People make every consequential call. Patomy keeps the record.</span></p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="case__bottom" data-reveal>
+        <div class="case__strip">
+          <ol class="flow" aria-label="How a case moves">
+          <li class="flow__step" style="--d: 250"><span class="flow__pill">Application</span><span class="flow__link" aria-hidden="true"><img src="assets/icons/flow-dot.svg" width="8" height="8" alt=""><img src="assets/icons/flow-arrow.svg" width="56" height="24" alt=""></span></li>
+          <li class="flow__step" style="--d: 430"><span class="flow__pill">Advisor</span><span class="flow__link" aria-hidden="true"><img src="assets/icons/flow-dot.svg" width="8" height="8" alt=""><img src="assets/icons/flow-arrow.svg" width="56" height="24" alt=""></span></li>
+          <li class="flow__step" style="--d: 610"><span class="flow__pill">Investment manager</span><span class="flow__link" aria-hidden="true"><img src="assets/icons/flow-dot.svg" width="8" height="8" alt=""><img src="assets/icons/flow-arrow.svg" width="56" height="24" alt=""></span></li>
+          <li class="flow__step" style="--d: 790"><span class="flow__pill">Due diligence</span><span class="flow__link" aria-hidden="true"><img src="assets/icons/flow-dot.svg" width="8" height="8" alt=""><img src="assets/icons/flow-arrow.svg" width="56" height="24" alt=""></span></li>
+          <li class="flow__step" style="--d: 970"><span class="flow__pill">Investment committee</span></li>
+          </ol>
+        </div>
+        <span class="case__stem" aria-hidden="true"><img src="assets/icons/flow-stem.svg" width="1" height="38.5" alt=""></span>
+        <p class="case__label line" style="--d: 1250"><span>One Patomy case</span></p>
+        <p class="case__rules line" style="--d: 1400"><span>Rules ∙ Evidence ∙ Gaps &amp; questions ∙ Decisions</span></p>
+      </div>
+    </section>
+    <section class="feature feature--media-right" id="eligibility" data-reveal aria-labelledby="eligibility-title">
+      <div class="feature__text">
+        <p class="eyebrow line" style="--d: 0"><span>01 · Mandate intelligence</span></p>
+        <h2 class="feature__title" id="eligibility-title">
+          <span class="line" style="--d: 110"><span>Eligibility you can prove</span></span>
+        </h2>
+        <p class="feature__lead line" style="--d: 240"><span>Test every application against your fund's formal rules: state aid, SME status, fund limits, region and instrument, with every finding linked to the page or register it came from.</span></p>
+        <ul class="feature__list">
+        <li style="--d: 460">Red only with proof. Missing information is never a fail, it stays Orange until resolved.</li>
+        <li style="--d: 610">Judgement stays human. Calls like the SME group test go to the manager, not the model.</li>
+        <li style="--d: 760">Every fund checked separately. Patomy suggests the best-fitting route.</li>
+        </ul>
+      </div>
+      <figure class="feature__media">
+        <img src="assets/images/features/mandate.jpg" width="624" height="752" alt="Smiling woman at work, framed by sweeping white lines" loading="lazy">
+      </figure>
+    </section>
+    <section class="feature feature--media-left" id="continuity" data-reveal aria-labelledby="continuity-title">
+      <div class="feature__text">
+        <p class="eyebrow line" style="--d: 0"><span>02 · Case continuity</span></p>
+        <h2 class="feature__title" id="continuity-title">
+          <span class="line" style="--d: 110"><span>One case,</span></span>
+          <span class="line" style="--d: 210"><span>from application to</span></span>
+          <span class="line" style="--d: 310"><span>investment committee.</span></span>
+        </h2>
+        <p class="feature__lead line" style="--d: 440"><span>Formal criteria, missing information, due diligence questions, evidence and decisions stay connected in one case. Fewer manual handovers, and an investment case that is easier to assess and to defend.</span></p>
+        <ul class="feature__list">
+        <li style="--d: 660">Gaps become questions. Missing facts turn into founder requests and due diligence items.</li>
+        <li style="--d: 810">Nothing gets lost. Open issues follow the case all the way to the committee.</li>
+        <li style="--d: 960">Hand over with context. The next person picks up the full case, not a forwarded deck.</li>
+        </ul>
+      </div>
+      <figure class="feature__media">
+        <img src="assets/images/features/continuity.jpg" width="624" height="752" alt="Thoughtful man with folded hands, with sweeping white lines behind him" loading="lazy">
+      </figure>
+    </section>
+    <section class="feature feature--media-right" id="memory" data-reveal aria-labelledby="memory-title">
+      <div class="feature__text">
+        <p class="eyebrow line" style="--d: 0"><span>03 · Institutional memory</span></p>
+        <h2 class="feature__title" id="memory-title">
+          <span class="line" style="--d: 110"><span>Context for</span></span>
+          <span class="line" style="--d: 210"><span>better decisions</span></span>
+        </h2>
+        <p class="feature__lead line" style="--d: 340"><span>Patomy remembers what your team knew when it decided, who decided, and why. Your fund's reasoning stops living in inboxes and in the heads of people who leave.</span></p>
+        <ul class="feature__list">
+        <li style="--d: 560">A snapshot of every decision. The evidence, rules and gaps as they stood on the day.</li>
+        <li style="--d: 710">Overrides on the record. Every human change is logged with its reason.</li>
+        <li style="--d: 860">Learn from outcomes. See how approved and declined cases developed afterwards.</li>
+        </ul>
+      </div>
+      <figure class="feature__media">
+        <img src="assets/images/features/memory.jpg" width="624" height="752" alt="Two colleagues talking on a sofa, with sweeping white lines across the scene" loading="lazy">
+      </figure>
+    </section>
+    <section class="feature feature--media-left" id="stack" data-reveal aria-labelledby="stack-title">
+      <div class="feature__text">
+        <p class="eyebrow line" style="--d: 0"><span>04 · Built into your stack</span></p>
+        <h2 class="feature__title" id="stack-title">
+          <span class="line" style="--d: 110"><span>Works where your team</span></span>
+          <span class="line" style="--d: 210"><span>already works.</span></span>
+        </h2>
+        <p class="feature__lead line" style="--d: 340"><span>Patomy connects to the systems your fund already runs. No migration, no new place to keep records.</span></p>
+        <ul class="feature__list">
+        <li style="--d: 560">Your CRM stays the system of record. Patomy adds the evidence and the decision.</li>
+        <li style="--d: 710">Known companies and founders recognised. Matched against your CRM and the KvK register.</li>
+        <li style="--d: 860">Bring your own data licences. Connect the data providers you already pay for.</li>
+        </ul>
+      </div>
+      <figure class="feature__media">
+        <img src="assets/images/features/stack.jpg" width="624" height="752" alt="Woman smiling at a tablet in a bright room, with sweeping white lines" loading="lazy">
+      </figure>
+    </section>
+    <section class="how" id="how-it-works" data-nav-theme="dark" aria-labelledby="how-title">
+      <div class="how__ring" data-reveal aria-hidden="true">
+        <div class="how__half how__half--left"><img src="assets/images/ring-left.svg" width="1168" height="824.334" alt=""></div>
+        <div class="how__half how__half--right"><img src="assets/images/ring-right.svg" width="1168" height="824.334" alt=""></div>
+      </div>
+
+      <div class="how__header" data-reveal>
+        <p class="eyebrow line" style="--d: 0"><span>How it works</span></p>
+        <h2 class="how__title" id="how-title">
+          <span class="line" style="--d: 120"><span>AI reads. Rules decide.</span></span>
+          <span class="line" style="--d: 230"><span>People own the decision.</span></span>
+        </h2>
+        <p class="how__lead line" style="--d: 420"><span>AI only reads documents and points to where it found each fact. Fixed rules, configured to your fund, decide every status and route.</span></p>
+      </div>
+
+      <ol class="how__steps">
+        <li class="how__step" data-reveal>
+          <div class="how__card">
+            <p class="how__num line" style="--d: 350"><span>01 / Intake</span></p>
+            <p class="how__name line" style="--d: 460"><span>Collect the application</span></p>
+            <p class="how__text line" style="--d: 570"><span>Pitch deck, founder form, annual accounts and cash forecast, matched to the KvK register.</span></p>
+          </div>
+        </li>
+        <li class="how__step" data-reveal>
+          <span class="how__arrow" aria-hidden="true"><img src="assets/icons/step-arrow.svg" width="56" height="24" alt=""></span>
+          <div class="how__card">
+            <p class="how__num line" style="--d: 350"><span>02 / Check</span></p>
+            <p class="how__name line" style="--d: 460"><span>Test it against your rules</span></p>
+            <p class="how__text line" style="--d: 570"><span>Red, Orange or Green per criterion and per fund, each linked to its source.</span></p>
+          </div>
+        </li>
+        <li class="how__step" data-reveal>
+          <span class="how__arrow" aria-hidden="true"><img src="assets/icons/step-arrow.svg" width="56" height="24" alt=""></span>
+          <div class="how__card">
+            <p class="how__num line" style="--d: 350"><span>03 / Clarify</span></p>
+            <p class="how__name line" style="--d: 460"><span>Close the gaps</span></p>
+            <p class="how__text line" style="--d: 570"><span>Missing facts become questions for the founder and due diligence items for the team.</span></p>
+          </div>
+        </li>
+        <li class="how__step" data-reveal>
+          <span class="how__arrow" aria-hidden="true"><img src="assets/icons/step-arrow.svg" width="56" height="24" alt=""></span>
+          <div class="how__card">
+            <p class="how__num line" style="--d: 350"><span>04 / Decide</span></p>
+            <p class="how__name line" style="--d: 460"><span>Route, decide, remember</span></p>
+            <p class="how__text line" style="--d: 570"><span>The case reaches the right team and the committee with its full history on record.</span></p>
+          </div>
+        </li>
+      </ol>
+    </section>
+    <section class="roles" id="use-cases" aria-labelledby="roles-title">
+      <div class="roles__header" data-reveal>
+        <p class="eyebrow line" style="--d: 0"><span>For the whole investment team</span></p>
+        <h2 class="roles__title" id="roles-title">
+          <span class="line" style="--d: 120"><span>One shared case,</span></span>
+          <span class="line" style="--d: 230"><span>three jobs made easier.</span></span>
+        </h2>
+      </div>
+      <ul class="roles__cards" data-reveal>
+        <li class="roles__card" style="--i: 0">
+          <div class="roles__photo"><img src="assets/images/roles/advisors.jpg" width="384" height="304" alt="Colleagues walking and talking on a staircase" loading="lazy"></div>
+          <div class="roles__body">
+            <h3 class="line" style="--d: 420"><span>Advisors &amp; venture developers</span></h3>
+            <p class="line" style="--d: 540"><span>Walk into the first founder call knowing what is missing and what to ask.</span></p>
+          </div>
+        </li>
+        <li class="roles__card" style="--i: 1">
+          <div class="roles__photo"><img src="assets/images/roles/managers.jpg" width="384" height="304" alt="Smiling man with folded arms in a bright office" loading="lazy"></div>
+          <div class="roles__body">
+            <h3 class="line" style="--d: 420"><span>Investment managers</span></h3>
+            <p class="line" style="--d: 540"><span>Start from a consistent first pass and build a case you can defend at committee.</span></p>
+          </div>
+        </li>
+        <li class="roles__card" style="--i: 2">
+          <div class="roles__photo"><img src="assets/images/roles/compliance.jpg" width="384" height="304" alt="Woman on a phone call beside a glass wall" loading="lazy"></div>
+          <div class="roles__body">
+            <h3 class="line" style="--d: 420"><span>Management &amp; compliance</span></h3>
+            <p class="line" style="--d: 540"><span>See intake by sector, stage and route, with every decision traceable for audit.</span></p>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section class="security" id="security" aria-labelledby="security-title">
+      <div class="security__top" data-reveal>
+        <div class="security__intro">
+          <p class="eyebrow line" style="--d: 0"><span>Security &amp; control</span></p>
+          <h2 class="security__title" id="security-title">
+            <span class="line" style="--d: 120"><span>Your data stays</span></span>
+            <span class="line" style="--d: 230"><span>your fund's</span></span>
+          </h2>
+        </div>
+        <ul class="security__badges" aria-label="Certifications and compliance">
+          <li style="--i: 0"><img class="security__badge" src="assets/images/security/badge-1.png" width="64" height="64" alt="ISO 27001:2013 certified company"></li>
+          <li style="--i: 1"><img class="security__badge" src="assets/images/security/badge-2.png" width="64" height="64" alt="ISO 14001:2015"></li>
+          <li style="--i: 2"><img class="security__badge" src="assets/images/security/badge-3.png" width="64" height="64" alt="ISO 9001:2015 certified company"></li>
+          <li style="--i: 3"><img class="security__badge" src="assets/images/security/badge-4.png" width="64" height="64" alt="EU Artificial Intelligence Act"></li>
+          <li style="--i: 4"><img class="security__badge" src="assets/images/security/badge-5.png" width="64" height="64" alt="GDPR"></li>
+          <li style="--i: 5"><img class="security__badge" src="assets/images/security/badge-6.png" width="64" height="64" alt="CCPA compliant"></li>
+        </ul>
+      </div>
+
+      <ul class="security__strip" data-reveal>
+        <li class="security__col">
+          <h3 class="line" style="--d: 500"><span>Never used for training</span></h3>
+          <p class="line" style="--d: 620"><span>Your documents never train models or inform another fund.</span></p>
+        </li>
+        <li class="security__col">
+          <h3 class="line" style="--d: 640"><span>Human in control</span></h3>
+          <p class="line" style="--d: 760"><span>No automatic approvals or rejections.</span></p>
+        </li>
+        <li class="security__col">
+          <h3 class="line" style="--d: 780"><span>Separated per organisation</span></h3>
+          <p class="line" style="--d: 900"><span>Each fund's data and rules are kept apart.</span></p>
+        </li>
+      </ul>
+
+      <div class="security__band" data-reveal>
+        <img src="assets/images/security/band.jpg" width="1440" height="557" alt="Smiling professional woman holding a tablet, with sweeping white lines across the sky" loading="lazy">
+      </div>
+    </section>
+    <section class="cta" id="cta" data-nav-theme="dark" data-reveal aria-labelledby="cta-title">
+      <div class="cta__text">
+        <h2 class="cta__title" id="cta-title">
+          <span class="line" style="--d: 0"><span>See your own criteria run</span></span>
+          <span class="line" style="--d: 110"><span>on a real dossier.</span></span>
+        </h2>
+        <p class="cta__lead line" style="--d: 300"><span>A 30-minute walkthrough with your fund's rules.</span></p>
+      </div>
+      <div class="cta__action" style="--d: 450"><a class="btn btn--primary" href="#cta">Request a demo <img src="assets/icons/arrow-right-white.svg" width="24" height="24" alt=""></a></div>
+    </section>
   </main>
 
-  <footer class="site-footer" data-component="footer"><!-- Large PATOMY wordmark --></footer>
+  <footer class="site-footer" data-component="footer" data-nav-theme="dark">
+    <div class="site-footer__top" data-reveal>
+      <p class="site-footer__tagline line" style="--d: 0"><span>The eligibility and decision layer for mandate-bound capital.</span></p>
+      <nav class="site-footer__links" aria-label="Footer">
+          <ul class="site-footer__col">
+            <li style="--d: 350"><a href="#shared-case">Platform</a></li>
+            <li style="--d: 405"><a href="#how-it-works">How it works</a></li>
+            <li style="--d: 460"><a href="#eligibility">Use cases</a></li>
+            <li style="--d: 515"><a href="#use-cases">For your team</a></li>
+            <li style="--d: 570"><a href="#security">Security</a></li>
+          </ul>
+          <ul class="site-footer__col">
+            <li style="--d: 625"><a href="#">Sign in</a></li>
+            <li style="--d: 680"><a href="#cta">Request a demo</a></li>
+            <li style="--d: 735"><a href="#cta">Run a past dossier</a></li>
+          </ul>
+          <ul class="site-footer__col">
+            <li style="--d: 790"><a href="#">Affinity&nbsp; vs Patomy</a></li>
+            <li style="--d: 845"><a href="#">Attio vs Patomy</a></li>
+            <li style="--d: 900"><a href="#">DealCloud vs Patomy</a></li>
+            <li style="--d: 955"><a href="#">V7 Go vs Patomy</a></li>
+            <li style="--d: 1010"><a href="#">Pitch Fynd vs Patomy</a></li>
+            <li style="--d: 1065"><a href="#">Building it yourself vs Patomy</a></li>
+          </ul>
+      </nav>
+    </div>
+    <div class="site-footer__mark" data-reveal>
+      <svg class="fw" viewBox="0 0 1440 340.973" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Patomy">
+          <defs>
+            <clipPath id="fw-win-letters"><rect x="-40" y="128" width="1520" height="217"/></clipPath>
+            <clipPath id="fw-win-mark"><rect x="-40" y="-4" width="1520" height="349"/></clipPath>
+          </defs>
+          <rect class="fw__box" id="Rectangle 6" x="362.147" y="137.727" width="397.253" height="203.246" fill="#8CACD3"/>
+          <g clip-path="url(#fw-win-mark)"><g class="fw__mark" style="--d: 280"><path d="M362.404 283.904C464.142 283.904 546.616 200.944 546.616 98.608V0H519.09V17.3377V98.608C519.09 185.653 448.939 256.216 362.404 256.216V283.904Z" fill="#905D2F"/><path d="M758.303 338.084C626.191 338.084 519.092 230.986 519.092 98.8732V98.608V69.3507V0H546.673V69.3507V98.608C546.673 215.635 641.542 310.504 758.569 310.504V338.084H758.303Z" fill="#F2F2F2"/><path d="M758.569 283.904C656.831 283.904 574.356 200.944 574.356 98.608V0H601.882V17.3377V98.608C601.882 185.653 672.033 256.216 758.569 256.216V283.904Z" fill="#F2F2F2"/><path d="M362.669 338.084C494.782 338.084 601.88 230.986 601.88 98.8732V98.608V69.3507V0H574.299V69.3507V98.608C574.299 215.635 479.43 310.504 362.404 310.504V338.084H362.669Z" fill="#905D2F"/></g></g>
+          <g clip-path="url(#fw-win-letters)">
+            <g class="fw__letter" style="--d: 100"><path d="M0 335.877V137.727H71.6173C111.53 137.727 135.875 168.016 135.875 200.286C135.875 233.122 112.663 263.977 71.6173 263.977H24.6273V335.877H0ZM68.7865 241.331C95.3953 241.331 110.398 223.215 110.398 200.286C110.398 178.489 94.5461 160.09 68.7865 160.09H24.6273V241.331H68.7865Z" fill="#F2F2F2"/></g>
+            <g class="fw__letter" style="--d: 190"><path d="M129.461 335.877L201.361 137.727H232.216L304.683 335.877H278.64L259.108 280.678H174.47L154.938 335.877H129.461ZM182.679 257.75H250.899L216.647 161.505L182.679 257.75Z" fill="#F2F2F2"/></g>
+            <g class="fw__letter" style="--d: 370"><path d="M913.34 340.973C855.027 340.973 814.831 295.964 814.831 239.35C814.831 182.452 855.027 137.727 913.34 137.727C971.653 137.727 1011.85 182.452 1011.85 239.35C1011.85 295.964 971.653 340.973 913.34 340.973ZM913.34 317.761C958.348 317.761 986.372 280.962 986.372 239.35C986.372 197.738 958.348 160.939 913.34 160.939C868.048 160.939 840.307 197.738 840.307 239.35C840.307 280.962 868.048 317.761 913.34 317.761Z" fill="#F2F2F2"/></g>
+            <g class="fw__letter" style="--d: 460"><path d="M1050.1 338.425V140.275H1083.22L1146.63 303.891L1210.04 140.275H1242.31V338.425H1218.25V183.302L1157.67 338.425H1134.46L1074.16 183.302V338.425H1050.1Z" fill="#F2F2F2"/></g>
+            <g class="fw__letter" style="--d: 550"><path d="M1345.74 338.425V255.768L1276.38 140.275H1305.26L1358.19 231.424L1411.69 140.275H1440L1370.65 255.768V338.425H1345.74Z" fill="#F2F2F2"/></g>
+          </g>
+        </svg>
+      <p class="site-footer__legal site-footer__legal--left">© 2026 Patomy AI Inc.</p>
+      <p class="site-footer__legal site-footer__legal--right"><a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a></p>
+    </div>
+  </footer>
 </body>
 </html>

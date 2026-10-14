@@ -1,0 +1,91 @@
+/* Loading intro. Two classes on <html>, both set in <head> and removed by js/components/intro.js:
+   .intro-on   overlay is shown, page scroll locked, real hero arcs hidden
+   .intro-hold hero content is hidden until its reveal animation starts */
+.intro {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--color-dark-blue);
+  color: var(--color-white);
+  cursor: pointer;
+}
+.intro-on .intro { display: block; }
+.intro-on { overflow: hidden; }
+
+.intro__stage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+/* Scales the fixed-size artwork down on narrow screens (--s is set from JS) */
+.intro__fit { transform: scale(var(--s, 1)); }
+
+/* Stage 1: tagline, revealed line by line through a mask */
+.intro__tagline {
+  max-width: min(564px, 90vw);
+  font: 400 40px/44px var(--font-serif);
+  text-align: center;
+}
+.intro__line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+.intro__line > span { display: block; transform: translateY(110%); will-change: transform; }
+
+/* Stages 2-4: one SVG scene. Letters and the mark start hidden below their masks. */
+.intro__scene { display: block; overflow: visible; }
+.intro__lt { transform: translateY(100px); will-change: transform; }
+.intro__lp { transform-origin: 0 0; }
+.intro__sigin { transform: translateY(115px); will-change: transform; }
+.intro__sig, .intro__box { transform-origin: 0 0; will-change: transform; }
+.intro__box { transform-origin: 0 112px; transform: scaleY(0); }
+
+/* Blue screen: grows out of the mark's box to cover the whole viewport, then turns into the page colour */
+.intro__flood {
+  position: absolute;
+  inset: 0;
+  background: #8CACD3;
+  visibility: hidden;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+/* Final stage: the mark's line pairs become the hero background. Same shapes as the hero's own arcs,
+   scaled 8.14x from the mark. Each side has two stacked layers (start colour / end colour) that cross-fade,
+   so the colour change is an opacity animation. */
+.intro__arcs {
+  position: absolute;
+  top: 0;
+  width: 646px;
+  height: 912px;
+  visibility: hidden;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+.intro__arcs--left { left: -374px; }
+.intro__arcs--right { left: calc(50% + 439px); }
+.intro__arcs > i {
+  position: absolute;
+  inset: 0;
+  will-change: opacity;
+}
+.intro__arcs--left > i { -webkit-mask: url("../assets/images/hero-arcs-left.svg") center / 100% 100% no-repeat; mask: url("../assets/images/hero-arcs-left.svg") center / 100% 100% no-repeat; }
+.intro__arcs--right > i { -webkit-mask: url("../assets/images/hero-arcs-right.svg") center / 100% 100% no-repeat; mask: url("../assets/images/hero-arcs-right.svg") center / 100% 100% no-repeat; }
+
+/* Hero content stays hidden until the reveal animations take over */
+.intro-hold .nav,
+.intro-hold .hero__content,
+.intro-hold .hero > .container,
+.intro-hold .theme-toggle,
+.intro-hold .ask-tomy { opacity: 0; }
+/* The page's own arcs appear only when the overlay copies land on them */
+.intro-on .bg-arcs { opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .intro { display: none !important; }
+}

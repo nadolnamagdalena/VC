@@ -13,12 +13,3 @@
   background: var(--color-dark-blue);
   color: var(--color-white);
 }
-
-/* Two-column feature rows (text + visual); --reverse swaps sides */
-.feature {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-5);
-  align-items: center;
-}
-.feature--reverse > :first-child { order: 2; }

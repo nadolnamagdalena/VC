@@ -37,3 +37,34 @@
   --radius-xs: 4px;
   --radius-full: 1440px;
 }
+
+/* Theme-dependent (semantic) tokens — light is the default */
+:root {
+  color-scheme: light;
+  --color-eyebrow: var(--color-intense-blue);
+  --color-nav-fg: var(--color-dark-blue);
+  --color-nav-btn-bg: var(--color-dark-blue);
+  --color-nav-btn-fg: var(--color-beige);
+  --color-card-bg: var(--color-white);
+  --color-card-border: var(--color-beige);
+  --color-arc: var(--color-white);
+  --arc-opacity: 1;
+  --color-pill-bg: var(--color-dark-blue);
+  --color-pill-fg: var(--color-beige);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-bg: var(--color-dark-blue);
+  --color-text: var(--color-beige);
+  --color-eyebrow: var(--color-light-blue);
+  --color-nav-fg: var(--color-white);
+  --color-nav-btn-bg: var(--color-white);
+  --color-nav-btn-fg: var(--color-dark-blue);
+  --color-card-bg: var(--color-dark-blue);
+  --color-card-border: var(--color-medium-blue);
+  --color-arc: var(--color-medium-blue);
+  --arc-opacity: 0.06;
+  --color-pill-bg: var(--color-beige);
+  --color-pill-fg: var(--color-dark-blue);
+}
