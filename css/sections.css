@@ -417,6 +417,9 @@
   gap: 51.2px;
 }
 .security__badge { display: block; width: 64px; height: 64px; opacity: 0.48; }
+.security__badge--dark { display: none; }
+:root[data-theme="dark"] .security__badge--light { display: none; }
+:root[data-theme="dark"] .security__badge--dark { display: block; }
 
 .security__strip {
   position: absolute;
@@ -517,6 +520,37 @@
 }
 .site-footer__legal--left { left: 72px; }
 .site-footer__legal--right { right: 72px; }
+
+/* Security in dark mode (Figma "Seventh_section_dark_mode") */
+:root[data-theme="dark"] .security .eyebrow { color: var(--color-accent); }
+:root[data-theme="dark"] .security__title { color: var(--color-white); }
+:root[data-theme="dark"] .security__col { border-color: rgba(242, 242, 242, 0.12); }
+:root[data-theme="dark"] .security__col p { color: var(--color-white); }
+
+/* ---- Slide-over: a dark section slides up over the light section before it --------------------------------- */
+/* The light section is held with its bottom at the bottom of the screen (js/components/slide-over.js sets
+   --slide-top) while the dark one scrolls over it; it dims a little as it gets covered (--cover, 0 to 1). */
+@media (prefers-reduced-motion: no-preference) {
+  .slide { position: relative; }
+  [data-slide-prev] {
+    position: sticky;
+    top: var(--slide-top, 0px);
+  }
+  [data-slide-prev]::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    background: var(--color-dark-blue);
+    opacity: calc(var(--cover, 0) * 0.28);
+    pointer-events: none;
+  }
+  .slide > .case,
+  .slide > .how {
+    z-index: 4;
+    box-shadow: 0 -24px 60px rgba(23, 27, 36, 0.16);
+  }
+}
 
 /* ---- Reveal when a [data-reveal] block is reached (js/components/reveal.js adds .is-revealed) ---------------- */
 @media (prefers-reduced-motion: no-preference) {

@@ -64,7 +64,6 @@
   padding-inline: 40px;
   font-size: 14px;
   color: var(--color-nav-fg);
-  backdrop-filter: blur(12px);
 }
 .nav__logo img { transition: filter 0.3s ease; }
 :root[data-theme="dark"] .nav__logo img,

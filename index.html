@@ -103,7 +103,9 @@
     </div>
   </nav>
 
-  <div class="stage">
+  <main>
+  <div class="slide">
+  <div class="stage" data-slide-prev>
   <!-- Background lines: pinned to the viewport while scrolling through the hero, they dock at the top of the
        next section and change colour there (css/sections.css, js/components/background-arcs.js) -->
   <div class="bg-arcs" data-component="background-arcs" aria-hidden="true">
@@ -178,7 +180,6 @@
   </section>
   </div>
 
-  <main>
     <section class="case" id="shared-case" data-nav-theme="dark" aria-labelledby="case-title">
       <div class="case__top" data-reveal>
         <div class="case__intro">
@@ -224,6 +225,7 @@
         <p class="case__rules line" style="--d: 1400"><span>Rules ∙ Evidence ∙ Gaps &amp; questions ∙ Decisions</span></p>
       </div>
     </section>
+  </div>
     <section class="feature feature--media-right" id="eligibility" data-reveal aria-labelledby="eligibility-title">
       <div class="feature__text">
         <p class="eyebrow line" style="--d: 0"><span>01 · Mandate intelligence</span></p>
@@ -278,7 +280,8 @@
         <img src="assets/images/features/memory.jpg" width="624" height="752" alt="Two colleagues talking on a sofa, with sweeping white lines across the scene" loading="lazy">
       </figure>
     </section>
-    <section class="feature feature--media-left" id="stack" data-reveal aria-labelledby="stack-title">
+    <div class="slide">
+    <section class="feature feature--media-left" id="stack" data-slide-prev data-reveal aria-labelledby="stack-title">
       <div class="feature__text">
         <p class="eyebrow line" style="--d: 0"><span>04 · Built into your stack</span></p>
         <h2 class="feature__title" id="stack-title">
@@ -345,6 +348,7 @@
         </li>
       </ol>
     </section>
+    </div>
     <section class="roles" id="use-cases" aria-labelledby="roles-title">
       <div class="roles__header" data-reveal>
         <p class="eyebrow line" style="--d: 0"><span>For the whole investment team</span></p>
@@ -387,12 +391,12 @@
           </h2>
         </div>
         <ul class="security__badges" aria-label="Certifications and compliance">
-          <li style="--i: 0"><img class="security__badge" src="assets/images/security/badge-1.png" width="64" height="64" alt="ISO 27001:2013 certified company"></li>
-          <li style="--i: 1"><img class="security__badge" src="assets/images/security/badge-2.png" width="64" height="64" alt="ISO 14001:2015"></li>
-          <li style="--i: 2"><img class="security__badge" src="assets/images/security/badge-3.png" width="64" height="64" alt="ISO 9001:2015 certified company"></li>
-          <li style="--i: 3"><img class="security__badge" src="assets/images/security/badge-4.png" width="64" height="64" alt="EU Artificial Intelligence Act"></li>
-          <li style="--i: 4"><img class="security__badge" src="assets/images/security/badge-5.png" width="64" height="64" alt="GDPR"></li>
-          <li style="--i: 5"><img class="security__badge" src="assets/images/security/badge-6.png" width="64" height="64" alt="CCPA compliant"></li>
+          <li style="--i: 0"><img class="security__badge security__badge--light" src="assets/images/security/badge-1.png" width="64" height="64" alt="ISO 27001:2013 certified company"><img class="security__badge security__badge--dark" src="assets/images/security/badge-1-dark.png" width="64" height="64" alt="ISO 27001:2013 certified company"></li>
+          <li style="--i: 1"><img class="security__badge security__badge--light" src="assets/images/security/badge-2.png" width="64" height="64" alt="ISO 14001:2015"><img class="security__badge security__badge--dark" src="assets/images/security/badge-2-dark.png" width="64" height="64" alt="ISO 14001:2015"></li>
+          <li style="--i: 2"><img class="security__badge security__badge--light" src="assets/images/security/badge-3.png" width="64" height="64" alt="ISO 9001:2015 certified company"><img class="security__badge security__badge--dark" src="assets/images/security/badge-3-dark.png" width="64" height="64" alt="ISO 9001:2015 certified company"></li>
+          <li style="--i: 3"><img class="security__badge security__badge--light" src="assets/images/security/badge-4.png" width="64" height="64" alt="EU Artificial Intelligence Act"><img class="security__badge security__badge--dark" src="assets/images/security/badge-4-dark.png" width="64" height="64" alt="EU Artificial Intelligence Act"></li>
+          <li style="--i: 4"><img class="security__badge security__badge--light" src="assets/images/security/badge-5.png" width="64" height="64" alt="GDPR"><img class="security__badge security__badge--dark" src="assets/images/security/badge-5-dark.png" width="64" height="64" alt="GDPR"></li>
+          <li style="--i: 5"><img class="security__badge security__badge--light" src="assets/images/security/badge-6.png" width="64" height="64" alt="CCPA compliant"><img class="security__badge security__badge--dark" src="assets/images/security/badge-6-dark.png" width="64" height="64" alt="CCPA compliant"></li>
         </ul>
       </div>
 
