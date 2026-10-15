@@ -72,7 +72,11 @@
   inset: 0;
   will-change: opacity;
 }
-.intro__arcs--left > i { -webkit-mask: url("../assets/images/hero-arcs-left.svg") center / 100% 100% no-repeat; mask: url("../assets/images/hero-arcs-left.svg") center / 100% 100% no-repeat; }
+/* Left pair: the start-colour layer holds the two stripes separately (inner / outer) so they can differ */
+.intro__arcs--left > i:last-child { -webkit-mask: url("../assets/images/hero-arcs-left.svg") center / 100% 100% no-repeat; mask: url("../assets/images/hero-arcs-left.svg") center / 100% 100% no-repeat; }
+.intro__arcs--left > i > b { position: absolute; inset: 0; }
+.intro__arcs--left > i > b:first-child { -webkit-mask: url("../assets/images/hero-arcs-left-inner.svg") center / 100% 100% no-repeat; mask: url("../assets/images/hero-arcs-left-inner.svg") center / 100% 100% no-repeat; }
+.intro__arcs--left > i > b:last-child { -webkit-mask: url("../assets/images/hero-arcs-left-outer.svg") center / 100% 100% no-repeat; mask: url("../assets/images/hero-arcs-left-outer.svg") center / 100% 100% no-repeat; }
 .intro__arcs--right > i { -webkit-mask: url("../assets/images/hero-arcs-right.svg") center / 100% 100% no-repeat; mask: url("../assets/images/hero-arcs-right.svg") center / 100% 100% no-repeat; }
 
 /* Hero content stays hidden until the reveal animations take over */

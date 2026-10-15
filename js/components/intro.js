@@ -58,8 +58,8 @@ const ARC_SCALE = 912 / 112;
 const RIGHT_PAIR_X = 51.9072;
 const ARC_LEFT = -374;            // .hero__arcs--left  { left: -374px }
 const ARC_RIGHT_OFFSET = 439;     // .hero__arcs--right { left: calc(50% + 439px) }
-const BROWN = '#905D2F';
 const BLUE = '#8CACD3';
+const cssColour = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 
 const SPEED = parseFloat(new URLSearchParams(location.search).get('introSpeed')) || 1;
 const t = (ms) => ms / SPEED;
@@ -131,7 +131,7 @@ export function initIntro() {
 
   // 03. Letters have left; the mark grows in place and one arc turns brown
   track(sig, [[TL.grow, { transform: MARK_V2 }, IN_OUT], [TL.grow + TL.growDur, { transform: MARK_V4 }]]);
-  track(arc, [[TL.arcColor, { fill: BLUE }, 'ease-in-out'], [TL.arcColor + TL.arcColorDur, { fill: BROWN }]]);
+  track(arc, [[TL.arcColor, { fill: BLUE }, 'ease-in-out'], [TL.arcColor + TL.arcColorDur, { fill: cssColour('--intro-sign-arc-end') }]]);
 
   // The mark's entrance mask is no longer needed once the mark starts growing past it
   intro.animate([], { duration: t(TL.grow) }).finished.then(() => sigClip.removeAttribute('clip-path'));
@@ -196,20 +196,27 @@ export function initIntro() {
     done.push(flood.animate([{ backgroundColor: introBg }, { backgroundColor: pageBg }], colourOpts).finished);
 
     const realArcs = (side) => getComputedStyle(document.querySelector(`.bg-arcs .hero__arcs--${side}`));
-    const go = (group, startX, home, startColour, side) => {
+    const go = (group, startX, home, startColours, side) => {
       const [from, to] = group.children;
       const end = realArcs(side);
       const place = `translate(${startX - home}px, ${refY}px) scale(${sigma})`;
-      from.style.background = startColour;
+      // startColours: one colour per stripe of the start layer (the left pair has two stripes, the right one layer)
+      const stripes = from.children.length ? [...from.children] : [from];
+      stripes.forEach((el, i) => (el.style.background = startColours[i] ?? startColours[0]));
       to.style.background = end.backgroundColor;
       to.style.opacity = '0';
       Object.assign(group.style, { visibility: 'visible', transform: place });
       done.push(group.animate([{ transform: place }, { transform: 'translate(0px, 0px) scale(1)' }], zoomOpts).finished);
       done.push(from.animate([{ opacity: 1 }, { opacity: 0 }], colourOpts).finished);
       done.push(to.animate([{ opacity: 0 }, { opacity: end.opacity }], colourOpts).finished);
+      return stripes;
     };
-    go(arcsL, leftX, ARC_LEFT, BROWN, 'left');
-    go(arcsR, rightX, rightHome, '#F2F2F2', 'right');
+    // The left inner stripe starts in the sign's own arc colour and settles into its final one while zooming
+    const innerEnd = cssColour('--intro-left-inner');
+    const leftStripes = go(arcsL, leftX, ARC_LEFT, [innerEnd, cssColour('--intro-left-outer')], 'left');
+    leftStripes[0].style.background = cssColour('--intro-sign-arc-end');
+    done.push(leftStripes[0].animate([{ backgroundColor: cssColour('--intro-sign-arc-end') }, { backgroundColor: innerEnd }], zoomOpts).finished);
+    go(arcsR, rightX, rightHome, ['#F2F2F2'], 'right');
 
     scene.style.visibility = 'hidden';
     intro.style.pointerEvents = 'none';

@@ -1,6 +1,7 @@
 #!/bin/sh
 # Builds the deployable site into _site/: the default palette at the root, and one copy per
-# palettes/<name>.txt under _site/<name>/ with its colours swapped (CSS, HTML, JS and SVG text).
+# palettes/<name>.txt under _site/<name>/ with its colours swapped (CSS, HTML, JS and SVG text);
+# an optional palettes/<name>.css is appended to that copy's css/tokens.css for token overrides.
 set -e
 cd "$(dirname "$0")/.."
 rm -rf _site
@@ -16,4 +17,5 @@ for f in palettes/*.txt; do
     find "_site/$name" -type f \( -name '*.html' -o -name '*.css' -o -name '*.js' -o -name '*.svg' \) \
       -exec perl -pi -e "s/#\Q$from\E/#$to/gi" {} +
   done
+  if [ -e "palettes/$name.css" ]; then cat "palettes/$name.css" >> "_site/$name/css/tokens.css"; fi
 done

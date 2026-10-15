@@ -51,6 +51,12 @@
   --arc-opacity: 1;
   --color-pill-bg: var(--color-dark-blue);
   --color-pill-fg: var(--color-beige);
+
+  /* Intro: colours of the sign's second arc after it changes, and of the left line pair (inner / outer
+     stripe) when it zooms out of the sign. Palettes can override these (see palettes/*.css). */
+  --intro-sign-arc-end: var(--color-medium-brown);
+  --intro-left-inner: var(--color-medium-brown);
+  --intro-left-outer: var(--color-medium-brown);
 }
 
 :root[data-theme="dark"] {
