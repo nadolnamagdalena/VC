@@ -35,3 +35,10 @@ assets/
 - Add a section to `index.html`, its styles to `css/components.css`, and (if interactive) a module in `js/components/`.
 - Use tokens from `tokens.css` instead of hard-coded values.
 - No build tools or dependencies.
+
+## Colour versions
+
+`scripts/build.sh` builds `_site/`: the default palette at the root, plus one copy of the site per
+`palettes/<name>.txt` at `/<name>/` (e.g. `/v2/`). A palette file is a list of `from to` hex pairs that are
+swapped across the HTML, CSS, JS and SVG files of that copy. To add a version, add a palette file; the
+GitHub Pages workflow runs the script on every push to `main`.

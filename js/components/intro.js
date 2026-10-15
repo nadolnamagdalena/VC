@@ -1,6 +1,6 @@
 // Loading intro, following the Figma screens Intro/01-06:
-//   01 tagline (short hold)  ->  02 logo + PATOMY  ->  03 signet only  ->  04 bigger signet  ->
-//   05 blue screen, left lines brown / right lines white, split to the sides  ->  06 beige, all lines white
+//   01 tagline (short hold)  ->  02 logo + PATOMY  ->  03 the letters leave, the signet grows in place  ->
+//   04 left lines brown / right lines white, split to the sides  ->  05 page colour, all lines white
 //   -> header content slides up piece by piece.
 //
 // Everything before the finale is ONE pre-scheduled timeline (see TL): every element gets a single
@@ -28,16 +28,12 @@ const TL = {
   away: 2850,        // letters rise out
   awayStagger: 25,
   awayDur: 500,
-  markMove: 2850,    // 03 mark slides to the centre, one arc turns brown, blue box rises behind it
-  markMoveDur: 850,
-  arcColor: 3000,
+  arcColor: 3000,    // 03 letters rise out; the signet grows in place, one arc turns brown
   arcColorDur: 500,
-  boxRise: 3200,
-  boxRiseDur: 550,
-  grow: 3700,        // 04 signet grows (starts as the slide ends)
-  growDur: 650,
+  grow: 2850,
+  growDur: 850,
 };
-const TOTAL = 4350;  // finale starts here
+const TOTAL = 3700;  // finale starts here
 
 // Finale: 05 blue screen + lines zoom to the sides, 06 colours settle, then the header reveal
 const ZOOM_DUR = 850;
@@ -51,8 +47,7 @@ const RISE = 100;                 // travel through the letter mask (window is 9
 const MARK_RISE = 115;            // mark entrance travel (mask is 112 tall)
 const pose = (x, y, s = 1) => `translate(${x}px, ${y}px) scale(${s})`;
 const MARK_V2 = pose(0, 0);                 // next to the wordmark
-const MARK_V3 = pose(210.1, 0, 0.9943);     // alone, centred (Intro/03)
-const S4 = 1.8696;                          // bigger signet (Intro/04)
+const S4 = 1.8696;                          // grown signet
 const T4 = { x: 152.4, y: -48.7 };
 const MARK_V4 = pose(T4.x, T4.y, S4);
 const SCENE_W = 550.2;
@@ -97,7 +92,6 @@ export function initIntro() {
   const sigClip = $('.intro__sigclip');
   const sigIn = $('.intro__sigin');
   const sig = $('.intro__sig');
-  const box = $('.intro__box');
   const arc = $('.intro__arc');
   const flood = $('.intro__flood');
   const letters = [...intro.querySelectorAll('.intro__lw')].map((g) => g.querySelector('.intro__lt'));
@@ -135,13 +129,9 @@ export function initIntro() {
     ]);
   });
 
-  // 03. Mark slides to the centre; one arc turns brown; the blue box rises behind it. 04. It grows.
-  track(sig, [
-    [TL.markMove, { transform: MARK_V2 }, IN_OUT], [TL.markMove + TL.markMoveDur, { transform: MARK_V3 }],
-    [TL.grow, { transform: MARK_V3 }, IN_OUT], [TL.grow + TL.growDur, { transform: MARK_V4 }],
-  ]);
+  // 03. Letters have left; the mark grows in place and one arc turns brown
+  track(sig, [[TL.grow, { transform: MARK_V2 }, IN_OUT], [TL.grow + TL.growDur, { transform: MARK_V4 }]]);
   track(arc, [[TL.arcColor, { fill: BLUE }, 'ease-in-out'], [TL.arcColor + TL.arcColorDur, { fill: BROWN }]]);
-  track(box, [[TL.boxRise, { transform: 'scaleY(0)' }, OUT], [TL.boxRise + TL.boxRiseDur, { transform: 'scaleY(1)' }]]);
 
   // The mark's entrance mask is no longer needed once the mark starts growing past it
   intro.animate([], { duration: t(TL.grow) }).finished.then(() => sigClip.removeAttribute('clip-path'));
@@ -180,13 +170,12 @@ export function initIntro() {
     [...q('.theme-toggle'), ...q('.ask-tomy')].forEach((el) => up(el, 860, 12, 700));
   }
 
-  // 05-06. The box floods the screen blue while the mark's line pairs split to the sides and zoom into the
-  // real hero arcs (same shapes, scaled 8.14x); then blue -> page colour and the left lines -> arc colour.
+  // 04-05. The mark's line pairs split to the sides and zoom into the
+  // real hero arcs (same shapes, scaled 8.14x); then the intro colour -> page colour and the left lines -> arc colour.
   function finale() {
     const W = root.clientWidth;
     const H = innerHeight;
     const r = scene.getBoundingClientRect();
-    const b = box.getBoundingClientRect();
     const k = r.width / SCENE_W;                    // rendered scale of the scene
     const refY = r.top + k * T4.y;                  // where the mark's top edge is on screen
     const leftX = r.left + k * T4.x;                // mark x = 0
@@ -201,11 +190,10 @@ export function initIntro() {
     const colourOpts = { duration: t(COLOR_DUR), delay: t(COLOR_AT), easing: 'ease-in-out', fill: 'both' };
     const done = [];
 
-    // Solid colour layer grows from the box's rectangle to the full screen (transform only: GPU friendly)
-    const floodStart = `translate(${b.left}px, ${b.top}px) scale(${b.width / W}, ${b.height / H})`;
-    Object.assign(flood.style, { visibility: 'visible', transform: floodStart });
-    done.push(flood.animate([{ transform: floodStart }, { transform: 'translate(0px, 0px) scale(1, 1)' }], zoomOpts).finished);
-    done.push(flood.animate([{ backgroundColor: BLUE }, { backgroundColor: pageBg }], colourOpts).finished);
+    // Full-screen colour layer fades from the intro colour to the page colour
+    const introBg = getComputedStyle(intro).backgroundColor;
+    flood.style.visibility = 'visible';
+    done.push(flood.animate([{ backgroundColor: introBg }, { backgroundColor: pageBg }], colourOpts).finished);
 
     const realArcs = (side) => getComputedStyle(document.querySelector(`.bg-arcs .hero__arcs--${side}`));
     const go = (group, startX, home, startColour, side) => {

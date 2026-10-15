@@ -42,17 +42,15 @@
 .intro__lt { transform: translateY(100px); will-change: transform; }
 .intro__lp { transform-origin: 0 0; }
 .intro__sigin { transform: translateY(115px); will-change: transform; }
-.intro__sig, .intro__box { transform-origin: 0 0; will-change: transform; }
-.intro__box { transform-origin: 0 112px; transform: scaleY(0); }
+.intro__sig { transform-origin: 0 0; will-change: transform; }
 
-/* Blue screen: grows out of the mark's box to cover the whole viewport, then turns into the page colour */
+/* Full-screen colour layer: fades from the intro colour to the page colour during the finale */
 .intro__flood {
   position: absolute;
   inset: 0;
-  background: #8CACD3;
+  background: var(--color-dark-blue);
   visibility: hidden;
-  transform-origin: 0 0;
-  will-change: transform;
+  will-change: background-color;
 }
 
 /* Final stage: the mark's line pairs become the hero background. Same shapes as the hero's own arcs,
