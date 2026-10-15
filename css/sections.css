@@ -548,7 +548,7 @@
   .slide > .case,
   .slide > .how {
     z-index: 4;
-    box-shadow: 0 -24px 60px rgba(23, 27, 36, 0.16);
+    box-shadow: 0 -24px 60px rgba(24, 30, 43, 0.16);
   }
 }
 
