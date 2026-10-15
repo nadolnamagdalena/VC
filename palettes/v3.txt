@@ -1,0 +1,3 @@
+# Palette 3: same as palette 2, with the burgundy swapped for green #427048. Lines are "from to" hex pairs.
+905d2f 427048
+171b24 181e2b
