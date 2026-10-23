@@ -83,8 +83,8 @@
 .intro-hold .nav,
 .intro-hold .hero__content,
 .intro-hold .hero > .container,
-.intro-hold .theme-toggle,
-.intro-hold .ask-tomy { opacity: 0; }
+.intro-hold .theme-toggle { opacity: 0; }
+
 /* The page's own arcs appear only when the overlay copies land on them */
 .intro-on .bg-arcs { opacity: 0; }
 

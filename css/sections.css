@@ -32,7 +32,7 @@
 .bg-arcs--color .hero__arcs { opacity: 0; }
 .bg-arcs--color .bg-arcs__color { opacity: 1; }
 
-/* ---- Section 2: why we created Patomy -------------------------------------------------------------------- */
+/* ---- The problem -------------------------------------------------------------------- */
 .problem {
   position: relative;
   height: 912px;               /* the lines dock to this height */
@@ -59,141 +59,7 @@
   line-height: 28px;
   opacity: 0.64;
 }
-
-.flow {
-  display: flex;
-  align-items: center;
-}
-.problem .flow {
-  position: absolute;
-  top: 643px;
-  left: 50%;
-  translate: -50% 0;
-}
-.flow__step { display: flex; align-items: center; }
-.flow__pill {
-  padding: 16px;
-  border-radius: 12px;
-  background: var(--color-pill-bg);
-  color: var(--color-pill-fg);
-  font-weight: 500;
-  line-height: normal;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-.flow__link { position: relative; flex: none; width: 58px; height: 24px; }
-.flow__link img { position: absolute; display: block; max-width: none; }
-.flow__link img:first-child { left: 0; top: 8px; }   /* dot */
-.flow__link img:last-child { left: 4px; top: 0; }    /* arrow */
-
-/* ---- Section 3: one shared case (dark panel in both themes) -------------------------------------------------- */
-.case {
-  position: relative;
-  height: 1100px;
-  background: var(--color-dark-blue);
-  color: var(--color-beige);
-  overflow: hidden;
-}
-.case__top,
-.case__bottom {
-  position: absolute;
-  left: 0;
-  right: 0;
-}
-.case__top { top: 0; height: 700px; }
-.case__bottom { top: 700px; height: 400px; }
-
-.case__intro {
-  position: absolute;
-  top: 160px;
-  left: 56px;
-  width: 470px;
-}
-.case .eyebrow { font-weight: 400; color: var(--color-light-blue); }
-.case__title {
-  margin-top: 24px;
-  font: 400 56px/56px var(--font-serif);
-}
-.case__lead {
-  margin-top: 32px;
-  font-size: 18px;
-  line-height: 28px;
-  opacity: 0.64;
-}
-
-.case__mark {
-  position: absolute;
-  top: 406px;
-  left: calc(50% - 105.46px);
-  width: 210.922px;
-  height: 180px;
-  overflow: hidden;
-}
-.case__mark img { display: block; max-width: none; }
-
-.case__cards {
-  position: absolute;
-  top: 160px;
-  right: 0;
-  width: 480px;
-}
-.case__card {
-  position: relative;
-  padding: 32px 64px 32px 0;
-}
-.case__card::before {                 /* the rule above each card */
-  content: '';
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 1px;
-  background: var(--color-medium-blue);
-  transform-origin: left;
-}
-.case__card h3 {
-  font-size: 18px;
-  font-weight: 400;
-  text-transform: uppercase;
-  color: var(--color-light-blue);
-}
-.case__card p { margin-top: 16px; line-height: 24px; }
-
-.case__strip {
-  position: absolute;
-  top: 27px;                          /* 727 - 700 */
-  left: 50%;
-  translate: -50% 0;
-  display: flex;
-  padding: 11px;
-  border: 1px solid var(--color-light-blue);
-}
-.case .flow__pill { background: var(--color-dark-blue); color: var(--color-beige); }
-.case__stem {
-  position: absolute;
-  top: 104px;
-  left: calc(50% - 0.5px);
-  transform-origin: top;
-}
-.case__stem img { display: block; }
-.case__label {
-  position: absolute;
-  top: 149px;
-  left: 0;
-  right: 0;
-  font-size: 18px;
-  text-align: center;
-  text-transform: uppercase;
-  color: var(--color-light-blue);
-}
-.case__rules {
-  position: absolute;
-  top: 176px;
-  left: 0;
-  right: 0;
-  line-height: 24px;
-  text-align: center;
-}
-
-/* ---- Section 4: four feature rows (text + photo card, alternating sides) ----------------------------------- */
+/* ---- Three feature rows (text + photo card, alternating sides) ----------------------------------- */
 .feature {
   display: flex;
   align-items: center;
@@ -210,13 +76,6 @@
   color: var(--color-text);
 }
 .feature__lead { margin-top: 24px; line-height: normal; }
-.feature__list { margin-top: 24px; }
-.feature__list li {
-  padding: 24px 32px;
-  line-height: 24px;
-  background: var(--color-card-bg);
-  border-top: 1px solid var(--color-card-border);
-}
 .feature__media {
   flex: none;
   width: 624px;
@@ -227,7 +86,7 @@
 }
 .feature__media img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
-/* ---- Section 5: how it works (dark panel in both themes) -------------------------------------------------- */
+/* ---- The solution (dark panel in both themes) -------------------------------------------------- */
 .how {
   position: relative;
   height: 1864px;
@@ -249,19 +108,18 @@
 .how .eyebrow { font-weight: 400; color: var(--color-light-blue); }
 .how__title {
   margin-top: 24px;
-  font: 400 56px/56px var(--font-serif);
+  font: 400 56px/64px var(--font-serif);
 }
 .how__lead {
   margin-top: 32px;
-  font-size: 18px;
-  line-height: 28px;
-  opacity: 0.64;
+  font-size: 24px;
+  line-height: 32px;
 }
 
 /* The oval ring behind the steps: two halves (the Figma export rotates each by 90deg) */
 .how__ring {
   position: absolute;
-  top: 498px;
+  top: 546px;
   left: 0;
   right: 0;
   height: 1168px;
@@ -289,7 +147,7 @@
 
 .how__steps {
   position: absolute;
-  top: 532px;
+  top: 580px;
   left: 50%;
   translate: -50% 0;
   width: min(600px, calc(100% - 2 * var(--gutter)));
@@ -324,67 +182,211 @@
 .how__name { font-size: 18px; line-height: normal; text-transform: uppercase; color: var(--color-light-blue); }
 .how__text { line-height: 24px; color: var(--color-white); }
 
-/* ---- Section 6: three jobs made easier -------------------------------------------------------------------- */
-.roles {
+/* ---- Why Patomy: comparison table ------------------------------------------------------------------------- */
+.compare {
   position: relative;
-  height: 1080px;
-  padding-top: 204px;
+  height: 940px;
+  padding-top: 116px;
 }
-.roles__header {
+.compare__header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: min(712px, calc(100% - 2 * var(--gutter)));
+  width: min(848px, calc(100% - 2 * var(--gutter)));
   margin-inline: auto;
   text-align: center;
 }
-.roles .eyebrow { font-weight: 400; }
-.roles__title {
+.compare .eyebrow { font-weight: 400; color: var(--color-accent); }
+.compare__title {
   margin-top: 24px;
-  font: 400 56px/56px var(--font-serif);
+  font: 400 56px/64px var(--font-serif);
   color: var(--color-text);
 }
-.roles__cards {
-  position: absolute;
-  top: 454px;
-  left: 80px;
-  right: 80px;
-  display: flex;
-  gap: 40px;
-  justify-content: center;
+.compare__lead {
+  max-width: 620px;
+  margin-top: 32px;
+  font-size: 18px;
+  line-height: 28px;
+  opacity: 0.64;
 }
-.roles__card {
-  position: relative;
-  flex: none;
-  width: 400px;
-  height: 472px;
-  overflow: hidden;
-  background: var(--color-bg);
-  border: 1px solid var(--color-gray);
-}
-.roles__photo {
+.compare__table {
   position: absolute;
-  top: 7px;
-  left: 7px;
-  width: 384px;
-  height: 304px;
-  overflow: hidden;
+  top: 456px;
+  left: 212px;
+  width: 1116px;
+  border-collapse: collapse;
+  color: #000;
+  line-height: 28px;
+}
+.compare__table th,
+.compare__table td {
+  height: 49px;
+  padding: 0 0 0 64px;
+  text-align: left;
+  font-weight: 400;
   background: var(--color-white);
+  border-bottom: 1px solid var(--color-beige);
 }
-.roles__photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.roles__body {
+.compare__table thead { background: var(--color-dark-blue); }
+.compare__table thead th,
+.compare__table thead td {
+  height: 48px;
+  font-weight: 500;
+  color: var(--color-white);
+  background: var(--color-dark-blue);
+  border-bottom: 1px solid var(--color-gray);
+}
+.compare__table tbody th {
+  width: 228px;
+  padding-left: 24px;
+  font-weight: 500;
+  border-right: 1px solid var(--color-beige);
+}
+.compare__table thead td { width: 228px; }
+.compare__table th:nth-child(2),
+.compare__table td:nth-child(2) { width: 400px; }
+.compare__table tbody td:last-child {
+  position: relative;
+  background: #c0dffe;
+}
+.compare__table tbody td:last-child img {
   position: absolute;
-  top: 341px;
+  top: 50%;
   left: 24px;
-  width: 352px;
+  translate: 0 -50%;
+}
+
+/* ---- Automated scouting: dotted world map (dark in both themes) ---------------------------------------------- */
+.scout {
+  position: relative;
+  height: 827px;
+  overflow: hidden;
+  background: var(--color-dark-blue);
+  color: var(--color-beige);
+}
+.scout__header {
+  position: absolute;
+  top: 68px;
+  left: 50%;
+  translate: -50% 0;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  align-items: center;
+  width: 720px;
+  text-align: center;
 }
-.roles__body h3 { font: 400 24px/normal var(--font-serif); color: var(--color-text); }
-.roles__body p { line-height: 24px; }
+.scout__eyebrow {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-light-blue);
+}
+.scout__title {
+  margin-top: 16px;
+  font: 400 52px/52px var(--font-serif);
+}
+.scout__lead {
+  max-width: 660px;
+  margin-top: 24px;
+  font-size: 16px;
+  line-height: 25px;
+  opacity: 0.72;
+}
+.scout__map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1440px;
+  height: 827px;
+}
+.scout__map > img { position: absolute; top: 315px; left: 140px; max-width: none; }
+.scout__pin {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: #afd0f7;
+}
+.scout__pin--ring::before,
+.scout__pin--ring::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  translate: -50% -50%;
+  top: 50%;
+  left: 50%;
+}
+.scout__pin--ring::before { width: 26px; height: 26px; border: 2px solid rgba(169, 211, 253, 0.55); }
+.scout__pin--ring::after {
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+}
+.scout__pin--match {
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  background: var(--color-white);
+  border: 3px solid var(--color-medium-brown);
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.06);
+}
+.scout__tip {
+  position: absolute;
+  top: 385px;
+  left: 499px;
+  width: 230px;
+  height: 48px;
+  padding: 8px 0 0 13px;
+  background: var(--color-beige);
+  border-radius: 4px;
+  box-shadow: -3px 0 0 var(--color-medium-brown), 0 8px 24px rgba(0, 0, 0, 0.3);
+  color: var(--color-dark-blue);
+}
+.scout__tip-label {
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5c6270;
+  white-space: nowrap;
+}
+.scout__tip-text { font-size: 13px; font-weight: 500; line-height: 16px; white-space: nowrap; }
+.scout__legend {
+  position: absolute;
+  top: 788px;
+  left: 50%;
+  translate: -50% 0;
+  display: flex;
+  gap: 24px;
+  font-size: 12px;
+  line-height: 20px;
+  color: #c4c8d1;
+  white-space: nowrap;
+}
+.scout__legend li { display: flex; align-items: center; gap: 10px; }
+.scout__key { width: 8px; height: 8px; border-radius: 50%; background: #afd0f7; }
+.scout__key--match { width: 10px; height: 10px; background: var(--color-white); border: 2px solid var(--color-medium-brown); }
 
-/* ---- Section 7: security & control ------------------------------------------------------------------------- */
+/* ---- Heading before the three feature rows ----------------------------------------------------------------- */
+.hands {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 488px;
+  padding-top: 188px;
+  text-align: center;
+}
+.hands .eyebrow { font-weight: 400; color: var(--color-accent); }
+.hands__title {
+  margin-top: 24px;
+  font: 400 56px/64px var(--font-serif);
+  color: var(--color-text);
+}
+
+/* ---- Security & control ------------------------------------------------------------------------- */
 .security {
   position: relative;
   height: 1099px;
@@ -545,7 +547,6 @@
     opacity: calc(var(--cover, 0) * 0.28);
     pointer-events: none;
   }
-  .slide > .case,
   .slide > .how {
     z-index: 4;
     box-shadow: 0 -24px 60px rgba(24, 30, 43, 0.16);
@@ -559,58 +560,8 @@
     transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
     transition-delay: calc(var(--d, 0) * 1ms);
   }
-  .js [data-reveal] .flow__pill {
-    opacity: 0;
-    transform: translateY(26px);
-    transition: opacity 0.9s ease, transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
-    transition-delay: calc(var(--d, 0) * 1ms);
-  }
-  .js [data-reveal] .flow__link img:first-child {
-    opacity: 0;
-    transform: scale(0.4);
-    transition: opacity 0.6s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-    transition-delay: calc(var(--d, 0) * 1ms + 450ms);
-  }
-  .js [data-reveal] .flow__link img:last-child {
-    opacity: 0;
-    transform: scaleX(0);
-    transform-origin: left center;
-    transition: opacity 0.4s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-    transition-delay: calc(var(--d, 0) * 1ms + 520ms);
-  }
-
-  /* Section 3 */
-  .js .case__mark img {
-    transform: translateY(105%);
-    transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1) 250ms;
-  }
-  .js .case__card::before {
-    transform: scaleX(0);
-    transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1);
-    transition-delay: calc(var(--d, 0) * 1ms - 250ms);
-  }
-  .js .case__card .line > span { transition-delay: calc(var(--d, 0) * 1ms + 200ms); }
-  .js .case__card p.line > span { transition-delay: calc(var(--d, 0) * 1ms + 320ms); }
-  .js .case__strip {
-    clip-path: inset(0 50% 0 50%);
-    transition: clip-path 1.3s cubic-bezier(0.65, 0, 0.35, 1);
-  }
-  .js .case__stem { transform: scaleY(0); transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1) 1000ms; }
-
-  .js [data-reveal].is-revealed .line > span,
-  .js [data-reveal].is-revealed .flow__pill,
-  .js [data-reveal].is-revealed .flow__link img,
-  .js [data-reveal].is-revealed .case__mark img,
-  .js [data-reveal].is-revealed .case__stem { opacity: 1; transform: none; }
-  .js [data-reveal].is-revealed .case__card::before { transform: none; }
-  .js [data-reveal].is-revealed .case__strip { clip-path: inset(0 0 0 0); }
-  /* Section 4: text staggers in like elsewhere; the photo card rises and its image settles from slightly zoomed */
-  .js .feature__list li {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.9s ease, transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
-    transition-delay: calc(var(--d, 0) * 1ms);
-  }
+  .js [data-reveal].is-revealed .line > span { transform: none; }
+  /* Features: text staggers in like elsewhere; the photo card rises and its image settles from slightly zoomed */
   .js .feature__media {
     opacity: 0;
     transform: translateY(56px);
@@ -620,10 +571,9 @@
     transform: scale(1.18);
     transition: transform 2.2s cubic-bezier(0.22, 1, 0.36, 1) 150ms;
   }
-  .js [data-reveal].is-revealed .feature__list li,
   .js [data-reveal].is-revealed .feature__media,
   .js [data-reveal].is-revealed .feature__media img { opacity: 1; transform: none; }
-  /* Section 5: the ring closes in from both sides; each step reveals on its own as you scroll to it */
+  /* Solution: the ring closes in from both sides; each step reveals on its own as you scroll to it */
   .js .how__half { opacity: 0; transition: opacity 1.4s ease, transform 2s cubic-bezier(0.22, 1, 0.36, 1); }
   .js .how__half--left { transform: translateX(-120px) scale(0.96); }
   .js .how__half--right { transform: translateX(120px) scale(0.96); }
@@ -636,22 +586,7 @@
   .js [data-reveal].is-revealed .how__half,
   .js [data-reveal].is-revealed .how__arrow,
   .js [data-reveal].is-revealed .how__card { opacity: 1; transform: none; }
-  /* Section 6: cards rise one after another, photos settle from slightly zoomed */
-  .js .roles__card {
-    opacity: 0;
-    transform: translateY(48px);
-    transition: opacity 1s ease, transform 1.3s cubic-bezier(0.22, 1, 0.36, 1);
-    transition-delay: calc(300ms + var(--i, 0) * 160ms);
-  }
-  .js .roles__photo img {
-    transform: scale(1.16);
-    transition: transform 2s cubic-bezier(0.22, 1, 0.36, 1);
-    transition-delay: calc(300ms + var(--i, 0) * 160ms);
-  }
-  .js .roles__card .line > span { transition-delay: calc(var(--d, 0) * 1ms + var(--i, 0) * 160ms); }
-  .js [data-reveal].is-revealed .roles__card,
-  .js [data-reveal].is-revealed .roles__photo img { opacity: 1; transform: none; }
-  /* Section 7: badges stamp in one by one, the strip wipes open, the photo band drops in */
+  /* Security: badges stamp in one by one, the strip wipes open, the photo band drops in */
   .js .security__badge {
     opacity: 0;
     transform: scale(0.7) rotate(-14deg);
@@ -703,4 +638,27 @@
   .js [data-reveal].is-revealed .fw__letter,
   .js [data-reveal].is-revealed .fw__mark { transform: none; }
   .js [data-reveal].is-revealed .site-footer__legal { opacity: 0.48; }
+  /* Comparison table rows rise one after another; the map fades in and its markers pulse */
+  .js .compare__table tbody tr {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.9s ease, transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: calc(var(--d, 0) * 1ms);
+  }
+  .js .scout__map > img,
+  .js .scout__tip,
+  .js .scout__legend { opacity: 0; transition: opacity 1.4s ease 500ms; }
+  .js .scout__pin { opacity: 0; transition: opacity 0.8s ease 1000ms; }
+  .js [data-reveal].is-revealed .compare__table tbody tr,
+  .js [data-reveal].is-revealed .scout__map > img,
+  .js [data-reveal].is-revealed .scout__tip,
+  .js [data-reveal].is-revealed .scout__legend,
+  .js [data-reveal].is-revealed .scout__pin { opacity: 1; transform: none; }
+  .scout__pin--ring::before { animation: scout-ring 3.2s ease-out infinite; }
+  .scout__pin--ring:nth-of-type(3n)::before { animation-delay: -1.1s; }
+  .scout__pin--ring:nth-of-type(3n+1)::before { animation-delay: -2.2s; }
+  @keyframes scout-ring {
+    0% { scale: 0.7; opacity: 0.9; }
+    70%, 100% { scale: 1.25; opacity: 0; }
+  }
 }

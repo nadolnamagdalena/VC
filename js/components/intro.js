@@ -166,8 +166,7 @@ export function initIntro() {
     up(document.querySelector('.hero__ctas'), 640, 20, 900);
     mask(document.querySelector('.hero__note > span'), 760, 850);
     up(document.querySelector('.hero__image'), 380, 50, 1100);
-    up(document.querySelector('.key-points'), 760, 28, 950);
-    [...q('.theme-toggle'), ...q('.ask-tomy')].forEach((el) => up(el, 860, 12, 700));
+    q('.theme-toggle').forEach((el) => up(el, 860, 12, 700));
   }
 
   // 04-05. The mark's line pairs split to the sides and zoom into the

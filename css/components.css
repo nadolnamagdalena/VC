@@ -22,7 +22,6 @@
   width: 240px;
   height: 48px;
   padding: 20px 8px 20px 16px;
-  text-transform: uppercase;
 }
 .btn--primary { background: var(--color-accent); color: var(--color-white); border: 1px solid var(--color-white); }
 .btn--outline { background: var(--color-white); color: var(--color-border-action); border: 1px solid var(--color-gray); }
@@ -109,7 +108,7 @@
   position: relative;
   overflow: hidden;
   padding-top: 130px;
-  padding-bottom: 103px;   /* hero ends at 1638 px, where the next section starts (Figma) */
+  padding-bottom: 65px;    /* hero ends at 1368 px, where the next section starts (Figma) */
 }
 .hero__arcs {
   position: absolute;
@@ -146,7 +145,7 @@
   margin-bottom: -0.12em;
 }
 .line > span { display: block; }
-.hero__lead { max-width: 680px; margin-top: 24px; }
+.hero__lead { max-width: 600px; margin-top: 24px; }
 .hero__ctas { display: flex; gap: 24px; margin-top: 48px; }
 .hero__note { margin-top: 24px; font-size: 12px; opacity: 0.56; }
 
@@ -158,57 +157,7 @@
   border-radius: 24px;
 }
 
-.key-points {
-  display: flex;
-  margin-top: 67px;
-}
-.key-points__item {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 32px 40px;
-  background: var(--color-card-bg);
-  border: 1px solid var(--color-card-border);
-  line-height: 24px;
-}
-.key-points__title {
-  font-size: 18px;
-  font-weight: 400;
-  line-height: normal;
-  text-transform: uppercase;
-  color: var(--color-eyebrow);
-}
 
-.ask-tomy {
-  position: fixed;
-  right: 40px;
-  bottom: 40px;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  height: 56px;
-  padding: 0 12px;
-  background: var(--color-beige);
-  border: 1px solid var(--color-white);
-  border-radius: 100px;
-  color: var(--color-border-action);
-  line-height: 24px;
-  transition: border-color 0.15s ease, color 0.15s ease;
-}
-.ask-tomy__avatar {
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  background: var(--color-dark-blue);
-  border-radius: var(--radius-full);
-  transition: background-color 0.15s ease;
-}
-.ask-tomy:hover { border-color: var(--color-accent); color: var(--color-accent); }
-.ask-tomy:hover .ask-tomy__avatar { background: var(--color-accent); }
-.ask-tomy:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
 
 /* Theme toggle (fixed, bottom-left) */
 .theme-toggle {
