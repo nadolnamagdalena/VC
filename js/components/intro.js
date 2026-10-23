@@ -20,26 +20,26 @@ const TL = {
   tagOut: 1650,      // fully visible ~0.8 s, then rises out
   tagOutDur: 550,
   tagOutStagger: 60,
-  logoIn: 1750,      // 02 mark rises; PATOMY letters follow one by one
-  markInDur: 750,
-  letterIn: 1830,
-  letterStagger: 45,
-  letterInDur: 650,
-  away: 2850,        // letters rise out
-  awayStagger: 25,
-  awayDur: 500,
-  arcColor: 3000,    // 03 letters rise out; the signet grows in place, one arc turns brown
-  arcColorDur: 500,
-  grow: 2850,
-  growDur: 850,
+  logoIn: 1700,      // 02 mark rises; PATOMY letters follow one by one
+  markInDur: 650,
+  letterIn: 1740,
+  letterStagger: 35,
+  letterInDur: 600,
+  away: 2450,        // letters rise out
+  awayStagger: 20,
+  awayDur: 450,
+  arcColor: 2550,    // 03 letters rise out; the signet grows in place, one arc turns brown
+  arcColorDur: 450,
+  grow: 2450,
+  growDur: 800,
 };
-const TOTAL = 3700;  // finale starts here
+const TOTAL = 3250;  // finale starts here
 
 // Finale: 05 blue screen + lines zoom to the sides, 06 colours settle, then the header reveal
-const ZOOM_DUR = 850;
-const COLOR_AT = 550;   // ms after the finale starts: blue -> page colour, left lines brown -> white
+const ZOOM_DUR = 800;
+const COLOR_AT = 450;   // ms after the finale starts: blue -> page colour, left lines brown -> white
 const COLOR_DUR = 500;
-const REVEAL_AT = 450;  // ms after the finale starts
+const REVEAL_AT = 400;  // ms after the finale starts
 const VIDEO_AT = 1100;  // ms after the reveal starts: the hero video starts once the header has settled
 
 // ---- Scene geometry (user units of the 550.2 x 112 SVG scene) ---------------------------------------

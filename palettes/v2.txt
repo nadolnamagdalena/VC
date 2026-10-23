@@ -1,2 +1,0 @@
-# Palette 2 (Figma: Patomy-VC, node 61-13770). Lines are "from to" hex pairs applied across the whole site.
-905d2f 5a2235

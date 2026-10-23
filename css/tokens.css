@@ -8,7 +8,7 @@
   --color-medium-blue: #678bc2;
   --color-intense-blue: #3589de;
   --color-dark-blue: #181e2b;
-  --color-medium-brown: #905d2f;
+  --color-medium-brown: #5a2235;
   --color-border-action: #141414;
 
   --color-bg: var(--color-beige);
@@ -73,4 +73,10 @@
   --arc-opacity: 0.06;
   --color-pill-bg: var(--color-beige);
   --color-pill-fg: var(--color-dark-blue);
+}
+/* Palette 2 intro: the sign's second arc stays sky blue, and the left line pair is sky blue + burgundy
+   (burgundy comes from the colour swap in v2.txt). Appended to css/tokens.css of the /v2/ build. */
+:root {
+  --intro-sign-arc-end: #8cacd3;
+  --intro-left-inner: #a9d3fd;
 }

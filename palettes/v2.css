@@ -1,6 +1,0 @@
-/* Palette 2 intro: the sign's second arc stays sky blue, and the left line pair is sky blue + burgundy
-   (burgundy comes from the colour swap in v2.txt). Appended to css/tokens.css of the /v2/ build. */
-:root {
-  --intro-sign-arc-end: #8cacd3;
-  --intro-left-inner: #a9d3fd;
-}

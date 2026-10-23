@@ -36,14 +36,7 @@ assets/
 - Use tokens from `tokens.css` instead of hard-coded values.
 - No build tools or dependencies.
 
-## Colour versions
+## Build
 
-`scripts/build.sh` builds `_site/`: the default palette at the root, plus one copy of the site per
-`palettes/<name>.txt` at `/<name>/` (e.g. `/v2/`). A palette file is a list of `from to` hex pairs that are
-swapped across the HTML, CSS, JS and SVG files of that copy. An optional `palettes/<name>.css` is appended to
-`css/tokens.css`, and an optional `palettes/<name>/` folder is copied over the copy to replace individual files
-(e.g. `palettes/v2/assets/images/features/mandate.jpg`). To add a version, add a palette file; the
-GitHub Pages workflow runs the script on every push to `main`.
-
-An optional `palettes/<name>.pl` holds perl `s///` edits applied to that copy's `index.html` and intro script
-(`/v2/` uses it for the intro tagline and a faster intro timeline).
+`scripts/build.sh` assembles `_site/` for GitHub Pages: the site at the root, plus a copy under `/v2/` so older
+links keep working. The GitHub Pages workflow runs it on every push to `main`.
