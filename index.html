@@ -7,7 +7,7 @@
   <script>
     // Show the loading intro (unless the visitor prefers reduced motion). Set before first paint.
     document.documentElement.classList.add('js');
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('intro-on', 'intro-hold');
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches && !matchMedia('(max-width: 767px)').matches) document.documentElement.classList.add('intro-on', 'intro-hold');
   </script>
   <script>
     // Apply saved/system color mode before first paint to avoid a flash
@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/sections.css">
   <link rel="stylesheet" href="css/intro.css">
+  <link rel="stylesheet" href="css/mobile.css">
   <script type="module" src="js/main.js"></script>
 </head>
 <body>
@@ -89,6 +90,8 @@
       <img src="assets/icons/logo-mark.svg" width="21.092" height="18" alt="">
       <img src="assets/icons/logo-wordmark.svg" width="58.01" height="10.821" alt="">
     </a>
+    <button class="nav__menu" type="button" aria-expanded="false" aria-controls="nav-panel">Menu</button>
+    <div class="nav__panel" id="nav-panel">
     <ul class="nav__links">
       <li><a href="#problem">Problem</a></li>
       <li><a href="#solution">Solution</a></li>
@@ -99,6 +102,7 @@
     <div class="nav__actions">
       <a class="btn btn--ghost" href="#">Sign in</a>
       <a class="btn btn--dark" href="#cta">Book a 15-min demo</a>
+    </div>
     </div>
   </nav>
 
@@ -147,8 +151,7 @@
         <span class="line" style="--d: 230"><span>You don’t.</span></span>
       </h2>
       <div class="problem__lead">
-        <p class="line" style="--d: 420"><span>You’ve seen thousands of companies and remember almost none of them.<br>Your screening takes weeks, so the best founders sign with someone faster. And the deals you never saw? Someone else saw them.</span></p>
-        <p class="line" style="--d: 520"><span>The startup you forgot is closing its round right now. Not with you.</span></p>
+        <p class="line" style="--d: 420"><span>You’ve seen thousands of companies and remember almost none of them. <br class="d-br">Your screening takes weeks, so the best founders sign with someone faster. And the deals you never saw? Someone else saw them. <br class="d-br">The startup you forgot is closing its round right now. Not with you.</span></p>
         <p class="line" style="--d: 620"><span>Patomy counts the cards for you.</span></p>
       </div>
     </div>
@@ -215,6 +218,7 @@
         </h2>
         <p class="compare__lead line" style="--d: 420"><span>Ask a ChatGPT wrapper twice, get two answers. Ask Patomy, get the same answer with its source, every time.</span></p>
       </div>
+      <div class="compare__scroll">
       <table class="compare__table">
         <thead>
           <tr><td></td><th scope="col">Your vibe-coded tool</th><th scope="col">Patomy</th></tr>
@@ -228,6 +232,7 @@
           <tr style="--d: 900"><th scope="row">The legwork</th><td>Your prompt, copy, paste</td><td><img src="assets/icons/check-circle.svg" width="20" height="20" alt="">Agents scout, read and chase gaps. You decide</td></tr>
         </tbody>
       </table>
+      </div>
     </section>
 
     <section class="scout" id="scouting" data-nav-theme="dark" data-reveal aria-labelledby="scout-title">
@@ -240,23 +245,26 @@
         <p class="scout__lead line" style="--d: 420"><span>Patomy picks up newly incorporated startups and emerging signals as they appear, screens each one against your mandate and puts the ones worth a first call on top.</span></p>
       </div>
       <div class="scout__map" role="img" aria-label="World map of newly incorporated startups, one of them in Maastricht fitting your mandate">
-        <img src="assets/images/world-dots.svg" width="1160" height="430" alt="">
-        <span class="scout__pin" style="left: 762.3px; top: 405.9px"></span>
-        <span class="scout__pin" style="left: 764.7px; top: 416px"></span>
-        <span class="scout__pin scout__pin--ring" style="left: 763px; top: 418px"></span>
-        <span class="scout__pin" style="left: 729.8px; top: 427.9px"></span>
-        <span class="scout__pin" style="left: 728.8px; top: 451.2px"></span>
-        <span class="scout__pin scout__pin--ring" style="left: 486.6px; top: 453.6px"></span>
-        <span class="scout__pin" style="left: 469.4px; top: 444.1px"></span>
-        <span class="scout__pin" style="left: 332.3px; top: 463.2px"></span>
-        <span class="scout__pin" style="left: 410.7px; top: 487.1px"></span>
-        <span class="scout__pin" style="left: 969.2px; top: 542.1px"></span>
-        <span class="scout__pin" style="left: 733.1px; top: 562.6px"></span>
-        <span class="scout__pin scout__pin--ring" style="left: 1052.8px; top: 578.8px"></span>
-        <span class="scout__pin" style="left: 839.7px; top: 587.4px"></span>
-        <span class="scout__pin scout__pin--ring" style="left: 573.6px; top: 658.1px"></span>
-        <span class="scout__pin scout__pin--ring" style="left: 1167px; top: 469.3px"></span>
-        <span class="scout__pin scout__pin--match" style="left: 739.6px; top: 419.8px"></span>
+        <picture>
+          <source media="(max-width: 767px)" srcset="assets/images/world-dots-sm.svg">
+          <img src="assets/images/world-dots.svg" width="1160" height="430" alt="">
+        </picture>
+        <span class="scout__pin" style="left: 53.647%; top: 21.140%"></span>
+        <span class="scout__pin" style="left: 53.853%; top: 23.488%"></span>
+        <span class="scout__pin scout__pin--ring" style="left: 53.707%; top: 23.953%"></span>
+        <span class="scout__pin" style="left: 50.845%; top: 26.256%"></span>
+        <span class="scout__pin" style="left: 50.759%; top: 31.674%"></span>
+        <span class="scout__pin scout__pin--ring" style="left: 29.879%; top: 32.233%"></span>
+        <span class="scout__pin" style="left: 28.397%; top: 30.023%"></span>
+        <span class="scout__pin" style="left: 16.578%; top: 34.465%"></span>
+        <span class="scout__pin" style="left: 23.336%; top: 40.023%"></span>
+        <span class="scout__pin" style="left: 71.483%; top: 52.814%"></span>
+        <span class="scout__pin" style="left: 51.129%; top: 57.581%"></span>
+        <span class="scout__pin scout__pin--ring" style="left: 78.690%; top: 61.349%"></span>
+        <span class="scout__pin" style="left: 60.319%; top: 63.349%"></span>
+        <span class="scout__pin scout__pin--ring" style="left: 37.379%; top: 79.791%"></span>
+        <span class="scout__pin scout__pin--ring" style="left: 88.534%; top: 35.884%"></span>
+        <span class="scout__pin scout__pin--match" style="left: 51.690%; top: 24.372%"></span>
         <div class="scout__tip">
           <p class="scout__tip-label">Newly registered · Maastricht</p>
           <p class="scout__tip-text">Medtech · Fits your mandate</p>
@@ -369,7 +377,7 @@
 
   <footer class="site-footer" data-component="footer" data-nav-theme="dark">
     <div class="site-footer__top" data-reveal>
-      <p class="site-footer__tagline line" style="--d: 0"><span>The eligibility and decision layer for mandate-bound capital.</span></p>
+      <p class="site-footer__tagline line" style="--d: 0"><span><span class="d-only">The eligibility and decision layer for mandate-bound capital.</span><span class="m-only">The investment decision<br>layer for your fund.</span></span></p>
       <nav class="site-footer__links" aria-label="Footer">
           <ul class="site-footer__col">
             <li style="--d: 350"><a href="#problem">Problem</a></li>

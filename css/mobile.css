@@ -1,0 +1,165 @@
+/* Mobile layout (Figma Patomy/Website/Mobile, 402 px wide). Everything below 768 px; the desktop layout above
+   is absolute-positioned for a 1440 px frame, so each section is put back into normal flow here. */
+
+/* Desktop defaults for the mobile-only pieces */
+.nav__panel { display: contents; }
+.nav__menu { display: none; }
+.m-only { display: none; }
+
+@media (max-width: 767px) {
+  :root { --gutter: 16px; }
+
+  .intro { display: none !important; }
+  .d-only, .d-br { display: none; }
+  .m-only { display: inline; }
+  .theme-toggle { display: none; }
+  /* Headings wrap naturally on a narrow screen instead of at the desktop's forced line breaks */
+  h1 .line, h2 .line { display: inline; padding: 0; margin: 0; overflow: visible; }
+  h1 .line > span, h2 .line > span { display: inline; }
+
+  /* ---- Nav: logo + Menu button; the links and actions open as a panel ----------------------------------- */
+  .nav { padding-inline: 16px; }
+  .nav__menu {
+    display: inline-flex;
+    align-items: center;
+    height: 42px;
+    padding: 0 16px;
+    background: var(--color-white);
+    color: var(--color-dark-blue);
+    border: 1px solid var(--color-gray);
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 24px;
+  }
+  .nav__menu:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  .nav__panel {
+    display: none;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 24px;
+    padding: 8px 16px 24px;
+    background: var(--color-bg);
+    color: var(--color-dark-blue);
+    --color-nav-btn-bg: var(--color-dark-blue);
+    --color-nav-btn-fg: var(--color-beige);
+    border-bottom: 1px solid var(--color-gray);
+  }
+  :root[data-theme="dark"] .nav__panel {
+    color: var(--color-beige);
+    --color-nav-btn-bg: var(--color-white);
+    --color-nav-btn-fg: var(--color-dark-blue);
+  }
+  .nav--open .nav__panel { display: flex; }
+  .nav__links { position: static; translate: none; flex-direction: column; gap: 16px; font-size: 16px; }
+  .nav__actions { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .nav__actions .btn--ghost { padding-inline: 0; }
+
+  /* ---- Hero ----------------------------------------------------------------------------------------------- */
+  .bg-arcs__stick { position: absolute; left: 0; right: 0; height: 594px; }
+  .hero__arcs { width: 420.75px; height: 594px; }
+  .hero__arcs--left { left: -281px; }
+  .hero__arcs--right { left: calc(50% + 61.66px); }
+  .bg-arcs__color { display: none; }
+  .bg-arcs--color .hero__arcs { opacity: var(--arc-opacity); }
+
+  .hero { padding-top: 114px; padding-bottom: 0; }
+  .hero__content { width: 100%; padding-inline: 16px; }
+  .hero__title { margin-top: 16px; font: 400 36px/36px var(--font-serif); }
+  .hero__lead { max-width: none; margin-top: 24px; font-size: 14px; line-height: 24px; }
+  .hero__ctas { flex-direction: column; gap: 16px; margin-top: 32px; }
+  .hero__note { max-width: 240px; margin-top: 16px; }
+  .hero > .container { margin-top: 59px; }
+  .hero__image { height: 198.5px; border-radius: 6.7px; }
+
+  /* ---- Problem ------------------------------------------------------------------------------------------- */
+  .problem { height: auto; padding: 68px 0 60px; }
+  .problem__header { width: calc(100% - 32px); }
+  .problem__title { font: 400 36px/36px var(--font-serif); }
+  .problem__lead { max-width: none; font-size: 16px; line-height: 24px; }
+
+  /* ---- Solution: a small ring mark, the header, then the four cards ----------------------------------------- */
+  .how { height: auto; padding: 120px 0 156px; }
+  .how__ring { position: relative; top: auto; left: auto; right: auto; width: 84.7px; height: 60px; margin: 0 auto 31px; }
+  .how__half { width: 42.346px; height: 60px; }
+  .how__half img { width: 60px; height: 42.346px; }
+  .how__header { position: static; translate: none; width: calc(100% - 32px); margin-inline: auto; }
+  .how__title { font: 400 36px/36px var(--font-serif); }
+  .how__lead { font-size: 16px; line-height: 24px; }
+  .how__steps { position: static; translate: none; width: calc(100% - 32px); margin: 36px auto 0; }
+
+  /* ---- Why Patomy: the table scrolls sideways, the row labels are dropped ---------------------------------- */
+  .compare { height: auto; padding: 116px 0 93px; }
+  .compare__header { width: calc(100% - 32px); }
+  .compare__title { font: 400 36px/36px var(--font-serif); }
+  .compare__lead { max-width: none; font-size: 16px; line-height: 24px; }
+  .compare__scroll { position: static; width: auto; margin-top: 35px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .compare__table { width: 813.4px; font-size: 11.662px; line-height: 20.4px; }
+  .compare__table th,
+  .compare__table td { height: 35px; padding-left: 46.65px; }
+  .compare__table thead td,
+  .compare__table tbody th { display: none; }
+  .compare__table thead th:nth-child(2),
+  .compare__table tbody td:nth-child(2) { width: 275.5px; padding-left: 31px; }
+  .compare__table tbody td:last-child img { left: 17.5px; width: 14.6px; height: 14.6px; }
+
+  /* ---- Scouting map ------------------------------------------------------------------------------------- */
+  .scout { height: 621px; }
+  .scout__header { top: 108px; width: calc(100% - 32px); }
+  .scout__title { margin-top: 15px; font: 400 36px/37px var(--font-serif); }
+  .scout__lead { max-width: none; margin-top: 16px; line-height: 27px; }
+  .scout__map { top: 369px; left: 16px; width: calc(100% - 32px); height: auto; aspect-ratio: 1160 / 430; }
+  .scout__tip { display: none; }
+  .scout__pin { width: 5px; height: 5px; margin: -2.5px 0 0 -2.5px; }
+  .scout__pin--ring::before { width: 20px; height: 20px; border-width: 1.5px; }
+  .scout__pin--ring::after { width: 32px; height: 32px; }
+  .scout__pin--match { width: 7px; height: 7px; margin: -3.5px 0 0 -3.5px; border-width: 2px; box-shadow: none; }
+  .scout__legend { top: 551px; }
+
+  /* ---- Heading + three feature rows (photo first, then the text) ------------------------------------------------- */
+  .hands { height: auto; padding: 118px 16px 77px; }
+  .hands__title { font: 400 36px/36px var(--font-serif); }
+  .feature {
+    height: auto;
+    flex-direction: column-reverse;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 47px;
+    padding: 0 16px;
+  }
+  .feature + .feature { margin-top: 80px; }
+  .feature__text { width: 100%; }
+  .feature__title { font: 400 32px/32px var(--font-serif); }
+  .feature__media { width: 100%; height: auto; aspect-ratio: 370 / 446; border-radius: 14.2px; }
+
+  /* ---- Security ----------------------------------------------------------------------------------------- */
+  .security { height: auto; padding-top: 106px; overflow: visible; }
+  .security__top { position: static; height: auto; padding-inline: 16px; }
+  .security__intro { position: static; width: auto; }
+  .security__title { font: 400 36px/36px var(--font-serif); }
+  .security__badges { position: static; gap: 29.6px; margin-top: 40px; }
+  .security__badge { width: 37px; height: 37px; }
+  .security__strip { position: static; flex-direction: column; margin: 40px 16px 0; }
+  .security__col,
+  .security__col:first-child,
+  .security__col:last-child { padding: 24px 16px; border: 1px solid var(--color-card-border); }
+  .security__col + .security__col { margin-top: -1px; }
+  .security__band { position: static; height: 358px; margin-top: 66px; }
+  .security__band img { object-position: 45.8% 50%; }
+
+  /* ---- Closing call to action --------------------------------------------------------------------------- */
+  .cta { height: 316px; }
+  .cta__text { position: static; translate: none; width: auto; padding: 72px 24px 0; }
+  .cta__title { font: 400 36px/36px var(--font-serif); }
+  .cta__action { position: static; margin: 46px 0 0 24px; }
+
+  /* ---- Footer ------------------------------------------------------------------------------------------ */
+  .site-footer__top { height: 589px; }
+  .site-footer__tagline { left: 16px; }
+  .site-footer__links { top: 168px; left: 16px; right: auto; gap: 104px; }
+  .site-footer__mark { inset: 403px 0 0 0; }
+  .site-footer__legal--left { left: 16px; bottom: 56px; }
+  .site-footer__legal--right { left: 16px; right: auto; bottom: 24px; }
+}

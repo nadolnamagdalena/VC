@@ -22,6 +22,19 @@ export function initNav(root) {
     requestAnimationFrame(update);
   };
 
+  // Mobile: the Menu button opens the links panel; picking a link (or Escape) closes it
+  const menu = root.querySelector('.nav__menu');
+  if (menu) {
+    const setOpen = (open) => {
+      root.classList.toggle('nav--open', open);
+      menu.setAttribute('aria-expanded', String(open));
+      menu.textContent = open ? 'Close' : 'Menu';
+    };
+    menu.addEventListener('click', () => setOpen(!root.classList.contains('nav--open')));
+    root.querySelector('.nav__panel').addEventListener('click', (e) => e.target.closest('a') && setOpen(false));
+    addEventListener('keydown', (e) => e.key === 'Escape' && setOpen(false));
+  }
+
   addEventListener('scroll', schedule, { passive: true });
   addEventListener('resize', schedule);
   update();
